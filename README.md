@@ -2,7 +2,7 @@
 
 The NAT(Nerd Assessment Test) is a code challenge and technical component of the Nerdery candidate interview process.
 
-The instructions given are available here.
+The [instructions given are available here](https://github.com/MadLittleMods/crispin-mulberry-fe-nat/blob/master/src/%23project/instructions.md).
 
 ## View [live Site](https://madlittlemods.github.io/crispin-mulberry-fe-nat/dist/)
 
