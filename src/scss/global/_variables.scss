@@ -4,3 +4,9 @@ $base-font-size: 14px;
 $base-line-height: 1.25;
 
 $secondary-font-size: 12px;
+
+
+$z-index-map: (
+	base	: 1,
+	overlay	: 9000
+);

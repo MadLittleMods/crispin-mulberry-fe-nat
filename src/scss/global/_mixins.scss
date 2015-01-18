@@ -1,3 +1,4 @@
+@import "variables";
 @import "utility-mixins";
 
 @mixin media-overlay-background
@@ -49,6 +50,8 @@ $current-page-top-offset: 60px !default;
 // A little tab that protrudes from the left side of the screen. Every call offsets it down 60px more.
 @mixin page-tab($top: false)
 {
+	z-index: map-get($z-index-map, overlay);
+
 	position: fixed;
 	left: 0;
 	top: if($top, $top, $current-page-top-offset);
