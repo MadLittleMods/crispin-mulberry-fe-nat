@@ -12,6 +12,13 @@
 .main-content
 {
 	background: $base-color;
+
+	&:focus
+	{
+		// Stop the outline when you click on the page content
+		outline: none;
+	}
+
 }
 
 
