@@ -1,0 +1,87 @@
+@import "../../global/variables";
+@import "../../global/colors";
+@import "../../global/utility-mixins";
+
+
+
+.toggle-block
+{
+	margin-bottom: $spacing;
+}
+
+.toggle-block-title
+{
+	position: relative;
+
+	margin: 0;
+	margin-bottom: 8px;
+	padding: 0;
+
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 14px;
+
+	@include cursor-hand;
+
+	&:focus
+	{
+		// Add some indication that they focused it
+		// Since this class will mostly be used on a heading,
+		// it will have to be navigated to using a screen reader anyway
+		text-decoration: underline;
+
+		outline: none;
+	}
+
+	// Add a triangle indicator
+	@include pseudo('after')
+	{
+		content: '';
+
+		@include triangle($base-font-color, 10px, 10px, down);
+
+		@include inline-block(middle);
+		
+		margin-left: 4px;
+
+		@include cursor-hand;
+
+		.toggle-block.is-collapsed > &
+		{
+			@include triangle($base-font-color, 10px, 10px, left);
+		}
+
+	}
+
+}
+
+.toggle-block-content
+{
+	list-style: none;
+
+	overflow: hidden;
+	//max-height: 1000px;
+
+	margin: 0;
+	padding: 0;
+
+	// The psd indicates that the line-height is a bit larger than the rest of the page
+	line-height: 1.3;
+
+	//@include transition(max-height 0.3s ease);
+
+	.toggle-block.is-collapsed > &
+	{
+		//max-height: 0;
+	}
+
+}
+
+.toggle-block-link
+{
+	&:active
+	{
+		color: $accent-color;
+	}
+	
+}

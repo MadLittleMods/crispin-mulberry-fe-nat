@@ -1,0 +1,247 @@
+@import "../../global/variables";
+@import "../../global/colors";
+@import "../../global/utility-mixins";
+
+
+@import "../../global/mixins";
+
+.carousel
+{
+	margin-bottom: $spacing;
+}
+
+.carousel-stage
+{
+	position: relative;
+
+	width: 100%;
+	height: 331px;
+}
+
+.carousel-frame
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+
+	opacity: 1;
+
+	@include transition(opacity 1s ease);
+
+	&.is-deprecated
+	{
+		opacity: 0;
+	}
+
+}
+
+
+.carousel-overlay
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	padding: 11px 14px;
+
+	@include media-overlay-background;
+
+	.carousel-thumbnail &
+	{
+		// Hide the overlay when in thumbnail form
+		display: none;
+	}
+
+}
+
+.carousel-overlay-title
+{
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 1.2;
+
+	text-transform: uppercase;
+}
+
+.carousel-overlay-description
+{
+	font-size: 14px;
+	line-height: 1.3;
+}
+
+
+
+
+.carousel-thumbnail-holder
+{
+	width: 100%;
+
+	margin-top: 10px;
+	// Add the negative margin bottom to negate the margin on the child `.carousel-thumbnail` elements
+	// We do this because ie8- doesn't support our `last-row-spreader` mixin which takes care of the modern browsers
+	// I'd rather not use this hack for all browsers so that is why we target only ie8- and use the mixin for the rest
+	@include ie7
+	{
+		margin-bottom: -$spacing;
+	}
+	@include ie8
+	{
+		margin-bottom: -$spacing;
+	}
+	
+
+	// Remove spacing between inline-blocks
+	font-size: 0;
+	line-height: 0;
+	
+	// Spread out the thumbnails across the area
+	text-align: justify;
+	text-justify: distribute-all-lines; // distribute items in IE
+
+	@include pseudo('after')
+	{
+		content: '';
+
+		@include inline-block-horizontal-spreader;
+	}
+
+}
+
+$_carousel-thumbnail-border-width: 3px;
+
+.carousel-thumbnail
+{
+	$carousel-thumbnail-width: 24%;
+	$carousel-thumbnail-height: 79px;
+
+	position: relative;
+
+	@include inline-block(top);
+	// So nothing escapes out of the thumbnail
+	// But we do have a pseudo element that needs to be shown, so don't use this
+	//overflow: hidden;
+
+	max-width: $carousel-thumbnail-width;
+	height: $carousel-thumbnail-height;
+	@include ie7
+	{
+		// We adjust the height for ie7 but one border because it doesn't support border-box
+		// And the thumbnails are too large at normal height.
+		height: $carousel-thumbnail-height - $_carousel-thumbnail-border-width;
+	}
+
+	margin-bottom: $spacing / 2;
+	$columns: floor(1/($carousel-thumbnail-width/100%));
+	@include last-row-spreader($columns) {
+		margin-bottom: 0;
+	}
+
+	@include ie7
+	{
+		border: $_carousel-thumbnail-border-width solid transparent;
+	}
+	@include ie8
+	{
+		border: $_carousel-thumbnail-border-width solid transparent;
+	}
+
+	// Reset the font to normal
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+	text-align: left;
+	
+	@include cursor-hand;
+
+	// We have a focus effect on the `:after` pseudo
+	&:focus
+	{
+		outline: none;
+	}
+
+	
+	// ie7 doesn't have `:focus`, so we do not have to worry about it here
+	@include pseudo('after')
+	{
+		content: '';
+
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+
+		color: transparent;
+		// We apply the box-shadow to a pseudo element(child) so it can appear on top of the image thumbnail
+		// Box shadow inherits from the `color` property if no color is defined
+		@include box-shadow(inset 0 0 0 $_carousel-thumbnail-border-width);
+	}
+	// ie7 doesn't have `:focus`, so we do not have to worry about it here
+	&:focus
+	{
+		@include pseudo('after')
+		{
+			// Box shadow inherits from the `color` property if no color is defined
+			color: darken($accent-color, 10%);
+		}
+	}
+
+
+	&.is-active
+	{
+		@include ie7
+		{
+			border: $_carousel-thumbnail-border-width solid $accent-color;
+		}
+		@include ie8
+		{
+			border: $_carousel-thumbnail-border-width solid $accent-color;
+		}
+		
+
+		@include pseudo('before')
+		{
+			content: '';
+
+			@include triangle($accent-color, 10px, 9px, up);
+
+			position: absolute;
+			top: -9px;
+			@include ie7
+			{
+				top: -9px - $_carousel-thumbnail-border-width;
+			}
+			@include ie8
+			{
+				top: -9px - $_carousel-thumbnail-border-width;
+			}
+			left: 50%;
+
+			// Align the triangle horizontally to the middle
+			margin-left: -5px;
+		}
+
+		@include pseudo('after')
+		{
+			content: '';
+
+			// Box shadow inherits from the `color` property if no color is defined
+			color: $accent-color;
+		}
+	}
+
+	& > img
+	{
+		max-height: 100%;
+		@include ie8
+		{
+			// Since ie8 supports box-sizing but not box-shadow
+			// We have some smaller thumbnails because the border gets factored in
+			// The bottom border does get covered up by the image but it looks better this way
+			max-height: none;
+		}
+	}
+
+}

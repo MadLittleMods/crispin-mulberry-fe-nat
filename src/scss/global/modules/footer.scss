@@ -1,0 +1,97 @@
+@import "../variables";
+@import "../colors";
+@import "../utility-mixins";
+
+.footer-bottom
+{
+	@include clearfix;
+
+	height: 66px;
+
+	padding: 0 $spacing;
+
+	background: #2c2c2c;
+
+	font-size: $secondary-font-size;
+
+	& a,
+	& a:link
+	{
+		color: #ffffff;
+	}
+}
+
+
+.footer-bottom-main
+{
+	float: left;
+
+	height: 100%;
+
+	color: #ffffff;
+
+	@include pseudo('after')
+	{
+		content: '';
+
+		@include inline-block-vertical-aligner;
+	}
+
+}
+
+	.footer-bottom-main-inner
+	{
+		@include inline-block(middle);
+	}
+
+.footer-secondary
+{
+	@include inline-block(middle);
+
+	color: #969696;
+	margin-top: 0.5em;
+	@include ie7
+	{
+		// ie7 does weird stuff with em spacing. It usually exagerates it by double
+		// So we have to half it
+		margin-top: 0.25em;
+	}
+}
+
+
+
+
+.footer-bottom-social
+{
+	float: right;
+
+	height: 100%;
+
+	// Remove spacing between inline-block elements
+	font-size: 0;
+	line-height: 0;
+
+	@include pseudo('before')
+	{
+		content: '';
+
+		@include inline-block-vertical-aligner;
+	}
+}
+
+
+.footer-social-icon
+{
+	@include inline-block(middle);
+
+	& + &
+	{
+		margin-left: 8px;
+	}
+
+	& > img
+	{
+		max-height: 100%;
+	}
+
+}

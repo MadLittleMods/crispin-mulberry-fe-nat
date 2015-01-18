@@ -1,0 +1,81 @@
+@import "utility-mixins";
+
+@mixin media-overlay-background
+{
+	$background-color: #e3e4e4;
+
+	background: $background-color;
+	/* @meta {"spritesheet": {"include": false}} */
+	background: url('../images/media-overlay-bg.png');
+	background: rgba($background-color, 0.8);
+}
+
+@mixin media
+{
+	@include clearfix;
+}
+
+@mixin media-icon
+{
+	float: left;
+
+	& > img
+	{
+		display: block;
+	}
+
+}
+
+@mixin media-body
+{
+	// Fit into the left over float space
+	overflow: hidden;
+}
+
+
+
+$current-page-top-offset: 60px !default;
+@include keyframes(page-tab-slide-in-from-left)
+{
+	0% 
+	{
+		left: -500px;
+	}
+	100%
+	{
+		left: 0px;
+	}
+}
+// A little tab that protrudes from the left side of the screen. Every call offsets it down 60px more.
+@mixin page-tab($top: false)
+{
+	position: fixed;
+	left: 0;
+	top: if($top, $top, $current-page-top-offset);
+	
+	display: block;
+	
+	padding: 8px;
+	
+	background: $secondary-color;
+	box-shadow: 0 0 0 2px $site-background-color, 0 0 0 5px $secondary-color;
+	
+	font-weight: bold;
+
+	@include transition(background 0.3s ease);
+	@include animation(0.3s page-tab-slide-in-from-left forwards);
+
+	&:hover,
+	&:focus
+	{
+		background: darken($secondary-color, 5%);
+		box-shadow: 0 0 0 2px $site-background-color, 0 0 0 5px darken($secondary-color, 5%);
+
+		outline: none;
+	}
+
+	// Only increment if we used the auto offset instead of the explicit top parameter
+	@if(not($top)) {
+		$current-page-top-offset: $current-page-top-offset + 60px;
+	}
+}

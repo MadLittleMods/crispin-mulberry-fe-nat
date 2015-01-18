@@ -1,0 +1,192 @@
+@import '../scss/global/variables';
+@import '../scss/global/colors';
+@import '../scss/global/utility-mixins';
+
+.sg-use-markdown
+{
+
+
+	p, ul, pre, blockquote, table
+	{
+		margin: ($spacing / 2) 0;
+	}
+
+	h1, h2, h3, h4, h5, h6
+	{
+		position: relative;
+		margin: $spacing 0;
+	}
+
+	h1 { font-size: 2em; }
+	h2 { font-size: 1.5em; }
+	h3 { font-size: 1.17em; }
+	h4 { font-size: 1.12em; }
+	h5 { font-size: .83em; }
+	h6 { font-size: .75em; }
+
+	a
+	{
+		color: $accent-color;
+
+		&:hover, &:focus
+		{
+			text-decoration: underline;
+		}
+	}
+
+	// inline code
+	code
+	{
+		margin: 0 2px;
+		padding: 0 5px;
+	}
+
+	// This is a fenced code block
+	pre > code {
+		display: block;
+		padding: 6px 10px;
+	}
+
+	// Styling for code
+	code
+	{
+		overflow: auto;
+
+		background: rgba(0, 0, 0, 0.04);
+		border: 1px solid rgba(0, 0, 0, 0.12);
+
+		@include border-radius(3px);
+	}
+
+	blockquote
+	{
+		color: lighten($base-font-color, 10%);
+
+		border: 1px solid rgba(0, 0, 0, 0.12);
+		border-left: 4px rgba(0, 0, 0, 0.12) solid;
+
+		background-color: rgba(0, 0, 0, 0.04);
+		
+		padding: 8px;
+		padding-left: $spacing;
+	}
+
+	hr
+	{
+		border: 0;
+		background-color: $seperator-color;
+		height: 1px;
+		margin-bottom: $spacing;
+	}
+
+	table
+	{
+		overflow: auto;
+
+		display: block;
+		width: 100%;
+
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	tr:nth-child(2n)
+	{
+		background-color: rgba(0, 0, 0, 0.05);
+	}
+
+	td, th
+	{
+		padding: 6px 13px;
+
+		border: 1px $seperator-color solid;
+	}
+
+	th
+	{
+		background-color: $secondary-color;
+
+		font-weight: bold;
+	}
+
+	ul
+	{
+		list-style-type: disc;
+	}
+
+	ol
+	{
+		list-style-type: decimal;
+	}
+
+	li
+	{
+		display: list-item;
+
+		margin-left: $spacing * 2;
+		padding: 2px 0;
+	}
+
+	img
+	{
+		max-width: 100%;
+	}
+
+	
+	// Permalink
+	.heading-permalink
+	{
+		position: absolute;
+		top: 0;
+		left: -16px;
+		bottom: 0;
+
+		width: 16px;
+
+		font-size: 0;
+		line-height: 0;
+
+		@include pseudo('before')
+		{
+			content: '';
+
+			@include inline-block-vertical-aligner;
+		}
+	
+		@include pseudo('after')
+		{
+			content: '';
+			
+			// Hide by default
+			display: none;
+
+			width: 16px;
+			height: 16px;
+
+			background-image: url('../images/icons/permalink-icon.png');
+		}
+
+	}
+	// Show on hover
+	// This is a bit verbose but we need can't use `&` tricks because we are scoped inside `.sg-use-markdown`
+	// which messed it up when we try to do something like `h1:hover > &`
+	// The reason we use `.pseudo-after` is for our cross-browser `pseudo` mixin for ie7 if this is ever compiled for ie7.
+	h1:hover > .heading-permalink:after,
+	h1:hover > .heading-permalink > .pseudo-after,
+	h2:hover > .heading-permalink:after,
+	h2:hover > .heading-permalink > .pseudo-after,
+	h3:hover > .heading-permalink:after,
+	h3:hover > .heading-permalink > .pseudo-after,
+	h4:hover > .heading-permalink:after,
+	h4:hover > .heading-permalink > .pseudo-after,
+	h5:hover > .heading-permalink:after,
+	h5:hover > .heading-permalink > .pseudo-after,
+	h6:hover > .heading-permalink:after,
+	h6:hover > .heading-permalink > .pseudo-after,
+	{
+		@include inline-block(middle);
+	}
+
+
+
+}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block pageContent %}
+	<h2 class="sg-kss-root-title">{{ kssMap[currentRootReference].reference }} - {{ kssMap[currentRootReference].header }}</h2>
+	{% if kssMap[currentRootReference].description %}
+		<div class="sg-kss-root-description sg-use-markdown">
+			{{ kssMap[currentRootReference].description }}
+		</div>
+	{% endif %}
+
+	{% for section in kssMap[currentRootReference].sections %}
+		<h3 id="section-{{ section.reference }}" class="sg-kss-section-title">{{ section.reference }} - {{ section.header }}</h3>
+		{% if section.description %}<div class="sg-kss-section-description sg-use-markdown">{{ section.description }}</div>{% endif %}
+		{% if section.parameters|length %}
+			<div class="sg-kss-section-parameters">
+				{% for parameter in section.parameters %}
+					{{ parameter }}
+				{% endfor %}
+			</div>
+		{% endif %}
+		
+		{% if section.markup %}
+			<div class="sg-markup-sandbox">
+				{{ section.markup }}
+			</div>
+		{% endif %}
+		
+		{% if section.markupCode %}
+			<pre class="sg-code-block"><code>{{ section.markupCode|escape }}</code></pre>
+		{% endif %}
+
+		{% for modifier in section.modifiers %}
+			<div class="sg-modifier-box">
+				<div class="sg-modifier-info-box">
+					<div class="sg-modifier-name">{{ modifier.name }}</div>
+					{% if modifier.description %}
+						<div class="sg-modifier-description sg-use-markdown">{{ modifier.description }}</div>
+					{% endif %}
+				</div>
+				{% if modifier.markup %}
+					<div class="sg-markup-sandbox">
+						{{ modifier.markup }}
+					</div>
+				{% endif %}
+			</div>
+		{% endfor %}
+	{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,45 @@
+@import "../../global/variables";
+@import "../../global/colors";
+@import "../../global/utility-mixins";
+
+
+.contest-preview
+{
+	@include media;
+
+	display: block;
+
+	margin-bottom: $spacing / 2;
+
+	font-weight: bold;
+	line-height: 1.35;
+
+	@include transition(background 0.3s ease);
+
+	&:hover,
+	&:focus
+	{
+		background: darken($secondary-color, 10%);
+		background: rgba(0, 0, 0, 0.1);
+
+		outline: none;
+	}
+
+}
+.contest-preview-icon
+{
+	@include media-icon;
+
+	margin-right: 15px;
+}
+.contest-preview-body
+{	
+	@include media-body;
+
+	&:hover,
+	&:focus,
+	{
+		text-decoration: none;
+	}
+
+}

@@ -1,0 +1,93 @@
+@import "utility-mixins";
+@import "utility-functions";
+
+
+@if import-once('global/colors') {
+
+
+// Colors
+//
+// Colors used throughout the site
+//
+// Styleguide 1.
+
+// !default: You can assign to variables if they aren’t already assigned by adding the !default flag to the end of the value. This means that if the variable has already been assigned to, it won’t be re-assigned, but if it doesn’t have a value yet, it will be given one.
+$site-background-color: #397ad1 !default;
+// The color of the main content section
+$base-color: #ffffff !default;
+$secondary-color: #dbdbdb !default;
+
+$accent-color: #0084d9 !default;
+$success-accent-color: #00d952 !default;
+$error-accent-color: #d9004d !default;
+
+$seperator-color: #cccdcd !default;
+$secondary-seperator-color: #969696 !default;
+
+
+$base-font-color: #282b2e !default;
+// The color to use on top of the $accent-color
+$accent-font-color: #ffffff !default;
+
+
+@include styleguide
+{
+	// Module Colors
+	//
+	// Markup:
+	// <div class="sg-color-block {$modifiers}"></div>
+	//
+	// .base-color			- Used as a base background
+	// .secondary-color		- Used as a background on secondary items
+	// .accent-color		- Used for primary UI widgets
+	//
+	// Styleguide 1.1
+	.sg-color-block
+	{
+		width: 100%;
+		height: 50px;
+
+		@include box-shadow(inset 1px 1px 0 rgba(255, 255, 255, 0.2), inset -1px -1px 0 rgba(0, 0, 0, 0.2), 0 0 4px 0 rgba(0, 0, 0, 0.1));
+
+		&.base-color
+		{
+			background: $base-color;
+		}
+
+		&.secondary-color
+		{
+			background: $secondary-color;
+		}
+
+		&.accent-color
+		{
+			background: $accent-color;
+		}
+	}
+
+
+	// Text Colors
+	//
+	// Colors used throughout the site
+	//
+	// Markup:
+	// <div class="{$modifiers}">
+	// 	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+	// </div>
+	//
+	// .base-font-color			- Used as a base background
+	//
+	// Styleguide 1.2
+
+
+	.base-font-color
+	{
+		color: $base-font-color;
+	}
+}
+
+
+
+
+
+}

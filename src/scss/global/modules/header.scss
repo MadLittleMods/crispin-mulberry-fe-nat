@@ -1,0 +1,237 @@
+@import "../variables";
+@import "../colors";
+@import "../utility-mixins";
+
+
+.header-top
+{
+	@include clearfix;
+
+	width: 100%;
+	height: 126px;
+}
+
+.header-logo-area
+{
+	float: left;
+
+	height: 100%;
+
+}
+
+	.header-logo-content
+	{
+		display: block;
+		height: 100%;
+
+		font-size: 0;
+		line-height: 0;
+		text-decoration: none;
+		outline: none;
+
+		&:hover,
+		&:focus
+		{
+			text-decoration: none;
+		}
+
+		&:focus
+		{
+			background: lighten($site-background-color, 7%);
+			background: rgba(255, 255, 255, 0.1);
+		}
+
+		@include pseudo('after')
+		{
+			content: '';
+
+			@include inline-block-vertical-aligner;
+		}
+
+	}
+
+		.header-logo
+		{
+			width: 270px;
+			max-height: 100%;
+
+			@include inline-block(middle);
+		}
+
+		// For screen readers
+		.header-logo-title
+		{
+			@include visually-hidden;
+		}
+
+
+.header-right
+{
+	float: right;
+
+	height: 100%;
+
+	@include pseudo('before')
+	{
+		content: '';
+
+		@include inline-block-vertical-aligner;
+	}
+}
+
+	.header-right-inner
+	{
+		@include inline-block(middle);
+
+		text-align: right;
+	}
+
+		.header-right-search-container
+		{
+			@include clearfix;
+
+		}
+
+		.header-right-underbar
+		{
+			@include clearfix;
+
+			margin-top: 1.3em;
+			@include ie7
+			{
+				// ie7 does weird stuff with em spacing. It usually exagerates it by double
+				// So we have to half it
+				margin-top: 0.65em;
+			}
+			
+			color: #ffffff;
+			font-size: 12px;
+
+			& > *
+			{
+				float: right;
+			}
+
+		}
+
+
+
+.search-bar
+{
+	@include clearfix;
+	@extend %text-input;
+	
+	float: right;
+
+	width: 260px;
+
+	margin: 0;
+	padding: 0;
+
+	// We define this for ie8- because the grey we are overriding(from `.text-input`) doesn't look the same over the blue background
+	@include ie7
+	{
+		border: 1px solid #366fc0;
+	}
+	@include ie8
+	{
+		border: 1px solid #366fc0;
+	}
+
+}
+
+.search-bar-input
+{
+	float: left;
+
+	width: 86%;
+	@include ie7 
+	{
+		width: 82%;
+	}
+	//height: 100%;
+	// ie8 and below needs explicit height instead of 100%
+	height: 24px; 
+
+	margin: 0;
+	padding: 0;
+	padding-left: 8px;
+
+	background: transparent;
+	border: 0;
+	outline: none;
+
+	// The reason we set the line-height only for older browsers is because
+	// modern browsers vertically align just fine and the carrot^ marker in chrome is stretched if you set it.
+	@include ie7 
+	{
+		line-height: 24px;
+	}
+	@include ie8 
+	{
+		line-height: 24px;
+	}
+
+}
+
+.search-bar-submit
+{
+	float: right;
+
+	width: 14%;
+	//height: 100%;
+	// ie8 and below needs explicit height instead of 100%
+	height: 24px;
+	
+	margin: 0;
+	padding: 0;
+	padding-right: 6px;
+
+	background-color: transparent;
+	border: 0;
+
+	@include cursor-hand;
+
+	// For the inline-block pseudo icon
+	font-size: 0;
+	line-height: 0;
+
+	// Align the icon to the right, against the padding
+	text-align: right;
+
+	@include transition(background 0.3s ease);
+
+	&:hover,
+	&:focus
+	{
+		background-color: #e5e5e5;
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+
+	// Remove the extra padding on buttons in firefox (weird bug, feature? :P)
+	// via: http://stackoverflow.com/a/5518143/796832
+	&::-moz-focus-inner
+	{
+		margin: 0;
+		padding: 0;
+	}
+
+	@include pseudo('before')
+	{
+		content: '';
+
+		@include inline-block-vertical-aligner;
+	}
+
+	@include pseudo('after')
+	{
+		content: '';
+
+		@include inline-block(middle);
+		width: 14px;
+		height: 13px;
+
+		background-image: url('../images/icons/search-icon.png');
+	}
+}
+

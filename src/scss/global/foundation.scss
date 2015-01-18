@@ -1,0 +1,138 @@
+// Foundation: http://jaydenseric.com/blog/forget-normalize-or-resets-lay-your-own-css-foundation
+
+@import "utility-mixins";
+
+html,
+body
+{
+	padding: 0;
+	margin: 0;
+}
+html
+{
+	width: 100%;
+	height: 100%;
+
+	@include box-sizing(border-box);
+}
+body
+{
+	min-width: 100%;
+	min-height: 100%;
+}
+
+// http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+*,
+*:before,
+*:after 
+{
+	@include box-sizing(inherit);
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+blockquote,
+figure,
+ol,
+ul,
+pre,
+code,
+form,
+input,
+label,
+button
+{
+	margin: 0;
+	padding: 0;
+}
+
+input,
+button,
+textarea
+{
+	font-family: inherit;
+}
+
+ul,
+ol
+{
+	list-style: none;
+}
+
+li
+{
+	display: block;
+}
+
+h1,
+h2,
+h3,
+h4
+{
+	font-size: inherit;
+}
+
+// Link reset
+a
+{
+	margin: 0;
+	padding: 0;
+	background: transparent;
+	
+	color: inherit;
+	@include ie7 
+	{
+		// ie7 hack to support the `inherit` value: http://stackoverflow.com/a/5571712/796832
+		// Make it one time only by setting the property to a static value
+		// You test if the expression runs once by this to the exprssion. `, window.asdf = (window.asdf || 0) + 1, this.style.asdf = window.asdf`
+		color: unquote('expression(this.runtimeStyle.color = this.parentNode.currentStyle["color"])');
+
+		// We don't use this one because the one above is simpler and seems to run once and is fine
+		// `clear` is a dummy property so we can run the CSS expression once
+		// http://vacskamati.blogspot.com/2008/10/one-time-execution-of-ie-css.html
+		//
+		// this is the actual assignment
+		// overwriting dummy property, 0 needed to avoid crash
+		//clear: expression(this.runtimeStyle.color = this.parentNode.currentStyle['color'], this.runtimeStyle.clear = "none", 0);
+	}
+	text-decoration: none;
+	
+	@include cursor-hand;
+
+	@include transition(all 0.3s ease);
+
+	&:visited
+	{
+		color: inherit;
+		@include ie7 
+		{
+			// ie7 hack to support the `inherit` value: http://stackoverflow.com/a/5571712/796832
+			color: expression(this.parentNode.currentStyle['color']);
+		}
+	}
+
+	&:hover,
+	&:focus
+	{
+		color: inherit;
+		@include ie7 
+		{
+			// ie7 hack to support the `inherit` value: http://stackoverflow.com/a/5571712/796832
+			color: expression(this.parentNode.currentStyle['color']);
+		}
+		text-decoration: underline;
+	}
+
+}
+
+img
+{
+	display: block;
+	max-width: 100%;
+	height: auto;
+
+	border: 0;
+}

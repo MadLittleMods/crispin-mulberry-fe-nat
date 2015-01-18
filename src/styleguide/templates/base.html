@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Styleguide - Crispin & Mulberry</title>
+
+
+	{# The CSS that the styleguide is presenting #}
+	<link rel="stylesheet" href="../css/all-styleguide.css">
+
+	{# Let the styleguide page CSS overwrite any of the other stuff #}
+	<link rel="stylesheet" href="../css/styleguide-styles.css">
+
+	{# We put scripts in the head so we can use inline scripts in the markdown, etc #}
+	<script type="text/javascript" src="../js/lib/require.js"></script>
+	<script src="../js/styleguide-main.js"></script>
+</head>
+<body>
+	
+	<div class="sg-main-sidebar">
+		<h1 class="sg-sidebar-title">Crispin & Mulberry Styleguide</h1>
+
+		<nav class="sg-root-section-nav">
+			<ul>
+				<li class="sg-root-section-nav-item">
+					<a href="index.html" class="sg-root-section-nav-item-link{% if isOverview %} is-active{% endif %}">Overview</a>
+				</li>
+				{% for rootReference, rootSection in kssMap %}
+					<li class="sg-root-section-nav-item">
+						<a href="section-{{ rootReference }}.html" class="sg-root-section-nav-item-link{% if currentRootReference == rootReference %} is-active{% endif %}">
+							<span class="sg-nav-item-section-reference">{{ rootSection.reference }}</span>
+							<span class="sg-nav-item-section-header">{{ rootSection.header }}</span>
+						</a>
+
+						{% if currentRootReference == rootReference %}
+							<ul class="section-nav">
+								{% for section in rootSection.sections %}
+									<li class="sg-section-nav-item">
+										<a href="#section-{{ section.reference }}" class="sg-section-nav-item-link">
+											<span class="sg-nav-item-section-reference">{{ section.reference }}</span>
+											<span class="sg-nav-item-section-header">{{ section.header }}</span>
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+		</nav>
+	</div>
+
+	<div class="sg-main-content">
+		{% block pageContent %}
+			{% if pageContent %}{{ pageContent }}{% endif %}
+		{% endblock %}
+
+		<div class="sg-footer-note">
+			Made with <a href="https://github.com/MadLittleMods/gulp-kss-styleguide" class="sg-link">gulp-kss-styleguide</a>
+		</div>
+	</div>
+
+	
+
+</body>
+</html>

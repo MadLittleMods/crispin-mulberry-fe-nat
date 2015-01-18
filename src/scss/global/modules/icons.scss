@@ -1,0 +1,141 @@
+@import "../variables";
+@import "../colors";
+@import "../utility-mixins";
+
+
+.primary-icon-folder
+{
+	@include pseudo('before')
+	{
+		content: '';
+
+		@include inline-block(middle);
+		width: 15px;
+		height: 12px;
+
+		background-image: url('../images/icons/folder-icon.png');
+	}
+}
+
+.primary-icon-article
+{
+	@include pseudo('before')
+	{
+		content: '';
+
+		@include inline-block(middle);
+		width: 15px;
+		height: 16px;
+
+		background-image: url('../images/icons/article-icon.png');
+	}
+}
+
+.primary-icon-video
+{
+	@include pseudo('before')
+	{
+		content: '';
+
+		@include inline-block(middle);
+		width: 16px;
+		height: 12px;
+
+		background-image: url('../images/icons/video-icon.png');
+	}
+}
+
+
+
+
+.secondary-icon-envelope
+{
+	@include pseudo('before')
+	{
+		content: '';
+
+		@include inline-block(middle);
+		width: 12px;
+		height: 11px;
+
+		background-image: url('../images/icons/envelope-icon.png');
+	}
+}
+
+
+.secondary-icon-contest
+{
+	@include pseudo('before')
+	{
+		content: '';
+
+		@include inline-block(middle);
+		width: 12px;
+		height: 11px;
+
+		background-image: url('../images/icons/contest-icon.png');
+	}
+}
+
+
+
+
+
+@mixin social-icon
+{
+	content: '';
+
+	@include inline-block(middle);
+	width: 26px;
+	height: 26px;
+}
+
+.social-icon-facebook
+{
+	@include pseudo('after')
+	{
+		@include social-icon;
+
+		background-image: url('../images/social/facebook.png');
+	}
+}
+
+.social-icon-flickr
+{
+	@include pseudo('after')
+	{
+		@include social-icon;
+
+		background-image: url('../images/social/flickr.png');
+	}
+}
+
+.social-icon-twitter
+{
+	@include pseudo('after')
+	{
+		@include social-icon;
+
+		background-image: url('../images/social/twitter.png');
+	}
+}
+
+.social-icon-vimeo
+{
+	@include pseudo('after')
+	{
+		@include social-icon;
+
+		background-image: url('../images/social/vimeo.png');
+	}
+}
+
+.social-icon-rss
+{
+	@include pseudo('after')
+	{
+		@include social-icon;
+
+		background-image: url('../images/social/rss.png');
+	}
+}

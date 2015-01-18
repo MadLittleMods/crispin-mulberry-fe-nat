@@ -1,0 +1,178 @@
+@import "../variables";
+@import "../colors";
+@import "../utility-mixins";
+
+
+$nav-item-height: 40px;
+$nav-item-active-height: 44px;
+
+
+.primary-nav
+{
+	position: relative;
+
+ 	// hide the little bit of excess
+	overflow: hidden;
+	width: 100%;
+	height: $nav-item-active-height;
+
+	margin: 0;
+	padding: 0;
+
+	list-style: none;
+
+	font-size: 0;
+	white-space: nowrap; 
+}
+
+.primary-nav-item
+{
+	$border-width: 1px;
+
+	// There is a bug in Chrome, IE9+, and Safari where the nav-items shift up 1px when focused. https://code.google.com/p/chromium/issues/detail?id=446072
+	// This will make only the text shift up a bit. This is the best we can do at the moment.
+	overflow: hidden;
+
+	@include ie7
+	{
+		// for ie7 for an extra pixel to show the top border
+		position: relative; 
+		top: -1px;
+	}
+
+	@include inline-block(bottom);
+	width: 16%;
+	height: $nav-item-height;
+	@include ie7
+	{
+		// Make up for the border in ie7 (top, bottom)
+		height: $nav-item-height - 2 * $border-width; 
+	}
+	line-height: $nav-item-height;
+
+	margin: 0;
+	padding: 0;
+	
+	$bg-gradient: (#fefefe, #d0d0d0);
+	$average-bg-color: mix(nth($bg-gradient, 1), nth($bg-gradient, 2), 50%);
+	background: $average-bg-color; // Set the fallback as right in the middle of the gradient
+	@include gradient(nth($bg-gradient, 1), nth($bg-gradient, 2));
+
+	border-top: $border-width solid #bdbdbd;
+	border-bottom: $border-width solid #bdbdbd;
+
+	
+	color: mix($base-font-color, $average-bg-color, 80%);
+	// ie7 bug forces us to split the rgba and the hex color attributes
+	& 
+	{
+		color: rgba($base-font-color, 0.8);
+	}
+
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	text-align: center;
+
+	text-shadow: 0 1px 0 #ffffff;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+
+	@include transition(all 0.3s ease);
+
+	// When the tab is active (we are on that page)
+	&.is-active
+	{
+		@include ie7
+		{
+			top: 0;
+		}
+
+		width: 20%;
+		height: $nav-item-active-height;
+
+
+		background: $base-color;
+		filter: none;
+
+		border-top: 1px solid #bdbdbd;
+		border-bottom: 0;
+		border-right: 1px solid #bdbdbd;
+		border-left: 1px solid #bdbdbd;
+
+		color: $base-font-color;
+		line-height: 48px; // lines it up with the non-active nav items
+
+		// Remove the outmost border on the first and last active nav items
+		&:first-child 
+		{
+			border-left: 0;
+		}
+		&:last-child
+		{
+			border-right: 0;
+		}
+
+	}
+
+}
+
+
+.primary-nav-item-link
+{
+	display: block;
+
+	@include cursor-hand;
+	@include transition(all 0.3s ease);
+
+	&:hover,
+	&:focus
+	{
+		background: #c8cacc;
+		background: rgba(72, 85, 102, 0.16);
+
+		outline: none;
+		text-decoration: none;
+	}
+
+	&:active
+	{
+		background: rgba(255, 255, 255, 0.5);
+		box-shadow: inset 0 0 4px 0 rgba(0, 0, 0, 0.2);
+	}
+
+
+	.is-active > &
+	{
+		// Add this so the box-shadow doesn't slide in at all, just fade in on hover
+		box-shadow: inset 0 #{-$nav-item-active-height} #{$nav-item-active-height} #{-$nav-item-active-height} rgba(255, 255, 255, 0);
+
+		$shadow-color: rgba($base-font-color, 0.3);
+		&:hover,
+		&:focus
+		{
+			background: none;
+			box-shadow: inset 0 #{-$nav-item-active-height} #{$nav-item-active-height} #{-$nav-item-active-height} #{$shadow-color};
+
+			$average-shadow-hex-color: opacify(mix(#ffffff, $shadow-color, 70%), 1);
+			@include ie7
+			{
+				background: $average-shadow-hex-color;
+			}
+			@include ie8
+			{
+				background: $average-shadow-hex-color;
+			}
+
+			// Speed up the transition from hover to active
+			@include transition(all 0.15s ease);
+		}
+
+		&:active
+		{
+			box-shadow: inset 0 -4px 24px -4px #{$shadow-color};
+		}
+
+	}
+	
+}

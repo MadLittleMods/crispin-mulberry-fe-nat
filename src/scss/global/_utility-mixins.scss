@@ -1,0 +1,593 @@
+$ie7: false !default;
+$ie8: false !default;
+$styleguide: false !default;
+
+
+// Diable this seciton with the `-` dashes for now since the kss doesn't parse it properly
+//- Sass Mixins
+//
+//- Helper utility functions used throughout the Sass. This includes nice cross-browser, vendor-prefixed solutions. 
+//
+//- Styleguide 6.
+
+
+// Styles that should only be shown in IE7. We use IE conditional stylesheets.
+//
+// Compatible in N/A
+@mixin ie7
+{
+	// Only use this content if we're dealing with ie7
+	@if $ie7 {
+		@content;
+	}
+}
+// Styles that should only be shown in IE8. We use IE conditional stylesheets.
+//
+// Compatible in N/A
+@mixin ie8
+{
+	// Only use this content if we're dealing with old ie8
+	@if $ie8 {
+		@content;
+	}
+}
+// Styles that should only be shown in Styleguide. Useful for some display/utility for use in the styleguide
+//
+// Compatible in N/A
+@mixin styleguide
+{
+	// Only use this content if we're dealing with some class
+	// that only is for presentational aspects that augment the core styles in the styleguide
+	@if $styleguide {
+		@content;
+	}
+}
+
+// Cross browser pseudo elements (`:before` and `:after`)
+//
+// $name		- Values can by anything but preferrably: `before` or `after`
+// $position	- *Optional*. Where the extra element will be added. Values: `before` or `after`. Default: `before`
+//
+// Compatible in IE7+, Chrome 4+, Firefox 2+, Safari 3.1+, Opera 9.6+, Android 2.1+
+@mixin pseudo($name, $position: null)
+{
+	$class: '.pseudo-' + #{$name};
+	$class-name: 'pseudo-' + #{$name};
+
+	// Properites that work as self-overwritable one-time css expression properties
+	// We tried to use the least useful and least used properties
+	//
+	// zoom: 1 - zoom
+	// clear: none - clear
+	// z-index: 1 - zIndex
+	// unicode-bidi: normal - unicodeBidi
+	// text-kashida-space: 0% - textKashidaSpace
+	// direction: ltr - direction
+
+	$property-name: '';
+	$property-runtime-style-name: '';
+	$property-static-value: '';
+
+	// If the person has a `:before` and `:after` pseudo element, both need to execute on ie7, so we need to use separate properties
+	@if($name == 'before') {
+		$property-name: 'unicode-bidi';
+		// The property name is camelCased for `this.runtimeStyle.property` used in the expression
+		$property-runtime-style-name: 'unicodeBidi';
+		// We also need an appropriate static value to replace the expression with after it runs once
+		$property-static-value: 'normal';
+	}
+	// 'after' or anything else
+	@else {
+		$property-name: 'text-kashida-space';
+		$property-runtime-style-name: 'textKashidaSpace';
+		$property-static-value: '0%';
+	}
+
+	// If they didn't explicitly set the position, lets try to give them some nice defaults
+	@if(not($position)) {
+		// A before element should be the first child
+		@if($name == 'before') {
+			$position: 'before';
+		}
+		// A after element should be the last child
+		@else if($name == 'after') {
+			$position: 'after';
+		}
+	}
+
+	// Translate the `before`, `after` position to a value we can use `el.insertAdjacentHTML`: https://developer.mozilla.org/en-US/docs/Web/API/Element.insertAdjacentHTML
+	// `afterbegin`: Just inside the element, before its first child.
+	// `beforeend`: Just inside the element, after its last child.
+	$insertAdjacentHTMLPosition: if($position == 'after', 'beforeend', 'afterbegin');
+
+	@if($name == 'before') {
+		$position: 'afterbegin';
+	}
+	// A after element should be the last child
+	@else if($name == 'after') {
+		$position: 'beforeend';
+	}
+
+
+	// Add some explicit elements for ie7 support
+	@include ie7
+	{
+		// You can test if the expression runs once by adding this to the exprssion: `, window.asdf = (window.asdf || 0) + 1, this.style.asdf = window.asdf`
+		// `, window.asdf#{$property-runtime-style-name} = (window.asdf#{$property-runtime-style-name} || 0) + 1, this.style.asdf#{$property-runtime-style-name} = window.asdf#{$property-runtime-style-name}`
+		#{$property-name}: unquote('expression(this.runtimeStyle.#{$property-runtime-style-name}="#{$property-static-value}", this.insertAdjacentHTML("#{$insertAdjacentHTMLPosition}", \'<div class="#{$class-name}"></div>\'))');
+	}
+
+	// Use a normal pseudo `:pseudo` selector for modern ie8+ browsers
+	// We use a direct descendant for the element added by the css expression in ie7 only
+	> #{$class},
+	&:#{$name}
+	{
+		@content;
+	}
+
+}
+
+// Add this to a parent element to self clear the children. See: http://nicolasgallagher.com/micro-clearfix-hack/
+//
+// Compatible in IE6+, Firefox 3.5+, Safari 4+, Chrome, Opera 9+
+@mixin clearfix
+{
+	// For ie 6/7 (trigger hasLayout)
+	@include ie7
+	{
+		// We add the negative margin because ie7 makes empty divs have some height
+		zoom: unquote('expression(this.runtimeStyle.zoom="1", this.insertAdjacentHTML("beforeend", \'<div style="clear:both;height:0;margin-bottom:-1px;"></div>\'))');
+		//zoom: unquote('expression(this.runtimeStyle.zoom="1", this.appendChild(document.createElement("br")).style.cssText="clear:both;font:0/0 serif;")');
+		// Non-js fallback
+		zoom: 1;
+	}
+
+	&:before,
+	&:after
+	{
+		// The space is necessary for a Opera bug
+		content: ' ';
+		display: table;
+	}
+
+	&:after
+	{
+		clear: both;
+	}
+}
+
+// Use if the element should be read by screen-readers but still be hidden. See: http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+//
+// Compatible in IE6+
+@mixin visually-hidden
+{
+	position: absolute;
+
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	width: 1px;
+	height: 1px;
+
+	margin: -1px;
+	padding: 0;
+
+	border: 0;
+}
+
+// Cancel the properties added by `visually-hidden`. Good for showing the element on `:focus`, etc
+//
+// Compatible in IE6+
+@mixin cancel-visually-hidden
+{
+	position: relative;
+
+	overflow: visible;
+	clip: auto;
+	width: auto;
+	height: auto;
+
+	margin: 0;
+	padding: 0;
+
+	border: 0;
+}
+
+
+// Cross-browser `inline-block` mixin
+//
+// $alignment	- The `vertical-align` property. Default: `middle`
+//
+// Compatible in IE7+, Firefox 2+, Chrome, Safari 3+, Opera
+@mixin inline-block($alignment: middle)
+{
+	display: -moz-inline-stack;
+	display: inline-block;
+	vertical-align: $alignment;
+	// Trigger hasLayout in ie
+	// "if you trigger hasLayout on a block element, and then set it to display:inline, 
+	// it magically becomes an inline-block in IE"
+	zoom: 1;
+	@include ie7
+	{
+		display: inline;
+	}
+}
+
+// Used in IE7, to allow other `inline-block` elements to vertically align properly. *Because pseudo elements are not supported.*
+//
+// Compatible in IE7+, Firefox 2+, Chrome, Safari 3+, Opera
+@mixin inline-block-vertical-aligner
+{
+	@include inline-block(middle);
+
+	height: 100%;
+
+	margin: 0;
+}
+
+// Used in IE7, to allow other `inline-block` elements to spread properly. 
+// For example when using `text-align: justify;`. *Because pseudo elements are not supported.*
+//
+// Compatible in IE7+, Firefox 2+, Chrome, Safari 3+, Opera
+@mixin inline-block-horizontal-spreader
+{
+	@include inline-block(top);
+
+	width: 100%;
+	height: 0;
+
+	margin: 0;
+}
+ 
+// Cross browser pointer/link style cursor. See: http://stackoverflow.com/a/2076480/796832
+//
+// Compatible in IE5+, Firefox, Chrome, Safari, Opera
+@mixin cursor-hand
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+// Cross browser gradient mixin. Creates a linear gradient background, from top to bottom.
+//
+// $from	- The starting color (top)
+// $to		- The ending color (bottom)
+//
+// Compatible in IE6+, Firefox 3.6+, Chrome 10+, Safari 4+, Opera 11.10+
+@mixin gradient($from, $to)
+{
+	// FF3.6+
+	background: -moz-linear-gradient(top, $from 0%, $to 100%);
+	// Chrome, Safari4+
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $from), color-stop(100%, $to));
+	// Chrome10+, Safari5.1+
+	background: -webkit-linear-gradient(top, $from 0%,$to 100%);
+	// Opera 11.10+
+	background: -o-linear-gradient(top, $from 0%, $to 100%);
+	// ie10+
+	background: -ms-linear-gradient(top, $from 0%, $to 100%);
+	// W3C
+	background: linear-gradient(to bottom, $from 0%, $to 100%);
+	// ie6-9
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($from)}', endColorstr='#{ie-hex-str($to)}', GradientType=0);
+}
+
+
+
+// Cross browser `box-shadow`
+//
+// $value	- `box-shadow` value. ex: `0 0 4px 4px #000000`
+//
+// Compatible in IE9+, Chrome 4+, Firefox 3.5+, Safari 3.1+, Opera 10.5+, Android 2.1+
+@mixin box-shadow($value...)
+{
+	-webkit-box-shadow: $value;
+	-moz-box-shadow: $value;
+	box-shadow: $value;
+}
+
+// Cross browser `border-radius`
+//
+// $value	- `border-radius` value. ex: `4px`
+//
+// Compatible in IE9+, Chrome 4+, Firefox 2+, Safari 3.1+, Opera 10.5+, Android 2.1+
+@mixin border-radius($value)
+{
+	-webkit-border-radius: $value; 
+	-moz-border-radius: $value;
+	border-radius: $value;
+}
+
+// Cross browser `box-sizing`
+//
+// $value	- `box-sizing` value.
+//
+// Compatible in IE8+, Chrome 4+, Firefox 2+, Safari 3.1+, Android 2.1+, Opera
+@mixin box-sizing($value)
+{
+	-moz-box-sizing: $value;
+	-webkit-box-sizing: $value;
+	box-sizing: $value;
+}
+
+// Cross browser `background-size`
+//
+// $value	- `background-size` value.
+//
+// Compatible in IE9+, Chrome 4+, Firefox 3.6+, Safari 3.1+, Android 2.1+, Opera 10.1+
+@mixin background-size($value...)
+{
+	-webkit-background-size: $value;
+	-moz-background-size: $value;
+	-o-background-size: $value;
+	background-size: $value;
+}
+
+// Cross browser `tab-size`
+//
+// $value	- `tab-size` value.
+//
+// Compatible in Chrome 21+, Firefox 4+, Safari 6.1+, Android 4.4+, Opera 10.6+
+@mixin tab-size($value)
+{
+	-moz-tab-size: $value; 
+	-o-tab-size: $value; 
+	tab-size: $value;
+}
+
+
+// Cross browser `transform`. *Note: Compatiblilty list is for 2D transforms*
+//
+// $value	- `transform` value.
+//
+// Compatible in IE9+, Chrome 4+, Firefox 3.5+, Safari 3.1+, Android 2.1+, Opera 10.5+
+@mixin transform($value)
+{
+	// Chrome, Opera 15+, Safari 3.1+
+	-webkit-transform: $value;
+	// IE 9
+	-ms-transform: $value;
+	// Firefox 16+, IE 10+, Opera
+	transform: $value;
+}
+
+
+// Cross browser `transition`
+//
+// $value	- `transition` value.
+//
+// Compatible in IE10+, Chrome 4+, Firefox 3.1+, Safari 6.1+, Android 2.1+, Opera 10.5+
+@mixin transition($value...)
+{
+	-webkit-transition: $value;
+	-moz-transition: $value;
+	-o-transition: $value;
+	transition: $value;
+}
+
+
+
+// Cross browser `keyframes`
+//
+// $name	- `keyframes` name.
+//
+// Compatible in IE10+, Chrome 4+, Firefox 5+, Safari 4+, Android 2.1+, Opera 12+
+@mixin keyframes($name)
+{
+	@-webkit-keyframes $name { @content };
+	@-moz-keyframes $name { @content };
+	@-o-keyframes $name { @content };
+	@keyframes $name { @content };
+}
+
+// Cross browser `animation-name`
+//
+// $name	- `animation-name` names.
+//
+// Compatible in IE10+, Chrome 4+, Firefox 5+, Safari 4+, Android 2.1+, Opera 12+
+@mixin animation-name($name...)
+{
+	-webkit-animation-name: $name;
+	-moz-animation-name: $name;
+	-o-animation-name: $name;
+	animation-name: $name;
+}
+
+// Cross browser `animation-duration`
+//
+// $duration	- `animation-duration` durations.
+//
+// Compatible in IE10+, Chrome 4+, Firefox 5+, Safari 4+, Android 2.1+, Opera 12+
+@mixin animation-duration($duration...)
+{
+	-webkit-animation-duration: $duration;
+	-moz-animation-duration: $duration;
+	-o-animation-duration: $duration;
+	animation-duration: $duration;
+}
+
+// Cross browser `animation-timing-function`
+//
+// $duration	- `animation-duration` durations.
+//
+// Compatible in IE10+, Chrome 4+, Firefox 5+, Safari 4+, Android 2.1+, Opera 12+
+@mixin animation-timing-function($timing...)
+{
+	-webkit-animation-timing-function: $timing;
+	-moz-animation-timing-function: $timing;
+	-o-animation-timing-function: $timing;
+	animation-timing-function: $timing;
+}
+
+// Cross browser `animation-iteration-count`
+//
+// $count	- `animation-iteration-count` counts.
+//
+// Compatible in IE10+, Chrome 4+, Firefox 5+, Safari 4+, Android 2.1+, Opera 12+
+@mixin animation-iteration-count($count...)
+{
+	-webkit-animation-iteration-count: $count;
+	-moz-animation-iteration-count: $count;
+	-o-animation-iteration-count: $count;
+	animation-iteration-count: $count;
+}
+
+// Cross browser `animation-direction`
+//
+// $direction	- `animation-direction` directions.
+//
+// Compatible in IE10+, Chrome 4+, Firefox 5+, Safari 4+, Android 2.1+, Opera 12+
+@mixin animation-direction($direction...)
+{
+	-webkit-animation-direction: $direction;
+	-moz-animation-direction: $direction;
+	-o-animation-direction: $direction;
+	animation-direction: $direction;
+}
+
+// Cross browser `animation-fill-mode`
+//
+// $fill	- `animation-fill-mode` fills.
+//
+// Compatible in IE10+, Chrome 4+, Firefox 5+, Safari 4+, Android 2.1+, Opera 12+
+@mixin animation-fill-mode($fill...)
+{
+	-webkit-animation-fill-mode: $fill;
+	-moz-animation-fill-mode: $fill;
+	-o-animation-fill-mode: $fill;
+	animation-fill-mode: $fill;
+}
+
+// Cross browser `animation-play-state`
+//
+// $state	- `animation-play-state` states.
+//
+// Compatible in IE10+, Chrome 4+, Firefox 5+, Safari 4+, Android 2.1+, Opera 12+
+@mixin animation-play-state($state...)
+{
+	-webkit-animation-play-state: $state;
+	-moz-animation-play-state: $state;
+	-o-animation-play-state: $state;
+	animation-play-state: $state;
+}
+
+// Cross browser `animation` shorthand
+//
+// $animation	- `animation` value.
+//
+// Compatible in Chrome 4+, Firefox 5+, Safari 4+, Android 2.1+, Opera 12+
+@mixin animation($animation...)
+{
+	-webkit-animation: $animation;
+	-moz-animation: $animation;
+	-o-animation: $animation;
+	animation: $animation;
+}
+
+
+// Cross browser triangle shape. Inspired by: https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/addons/_triangle.scss
+//
+// $color		- `animation` value.
+// $width		- `animation` value.
+// $height		- `animation` value.
+// $direction	- The direction the arrow point: up, down, left, right, up-right, up-left, down-right, down-left
+//
+// Compatible in everything
+@mixin triangle($color, $width, $height, $direction)
+{
+	width: 0; 
+	height: 0;
+
+	$background-color: transparent;
+
+	@if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+
+		$width: $width / 2;
+
+		@if $direction == up {
+			border-left: $width solid $background-color;
+			border-right: $width solid $background-color;
+			border-bottom: $height solid $color;
+			border-top: 0;
+
+		} @else if $direction == right {
+			border-top: $width solid $background-color;
+			border-bottom: $width solid $background-color;
+			border-left: $height solid $color;
+			border-right: 0;
+
+		} @else if $direction == down {
+			border-left: $width solid $background-color;
+			border-right: $width solid $background-color;
+			border-top: $height solid $color;
+			border-bottom: 0;
+
+		} @else if $direction == left {
+			border-top: $width solid $background-color;
+			border-bottom: $width solid $background-color;
+			border-right: $height solid $color;
+			border-left: 0;
+		}
+	}
+	@else if ($direction == up-right) or ($direction == up-left) {
+		border-top: $height solid $color;
+		border-bottom: 0;
+
+		@if $direction == up-right {
+			border-left:  $width solid $background-color;
+
+		} @else if $direction == up-left {
+			border-right: $width solid $background-color;
+		}
+
+	}
+	@else if ($direction == down-right) or ($direction == down-left) {
+		border-bottom: $height solid $color;
+		border-top: 0;
+
+		@if $direction == down-right {
+			border-left:  $width solid $background-color;
+
+		} @else if $direction == down-left {
+			border-right: $width solid $background-color;
+		}
+	}
+}
+
+
+// Select last row in a grid (without containers). From: http://benfrain.com/top-tips-selection-unrelated-front-end-developer-tips/
+//
+// $columns		- Number of columns in grid
+//
+// Compatible in IE9+, Chrome 4+, Firefox 3.5+, Safari 3.2+, Opera 9.5+
+@mixin last-row($columns)
+{
+	// The :nth-child(Xn+1) pseudo-class will target every xth element in the grid, which will be the first item in each row.
+	// The :nth-last-child(-n+X) pseudo-class will target the last x elements in the grid.
+	// Combining these pseudo-classes will only target elements that match both, which in our case is the first element in the last row of the grid.
+	// To select all elements in the last row we add a general sibling combinator ~ to the previous selector so it targets everything after the first element in the last row.
+
+	&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}),
+	&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}) ~ &
+	{
+		@content;
+	}
+}
+
+
+// Same as `last-row` but allows for an explicit spreader element at the bottom of the container. There is one pitfall to this selector. When there is only $columns+1 number of items in the container AND the spreader element is forgotten, it will select all of the items.
+//
+// $columns		- Number of columns in grid
+//
+// Compatible in IE9+, Chrome 4+, Firefox 3.5+, Safari 3.2+, Opera 9.5+
+@mixin last-row-spreader($columns)
+{
+	&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns + 1}),
+	&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns + 1}) ~ &
+	{
+		@content;
+	}
+}
+
+
+

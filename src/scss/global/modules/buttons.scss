@@ -1,0 +1,87 @@
+@import "../variables";
+@import "../colors";
+@import "../utility-mixins";
+
+
+// Buttons
+//
+// Most buttons are built from the same placeholder: `@extend %generic-button`
+//
+// Styleguide 3.
+
+
+%generic-button
+{
+	height: 2em;
+
+	margin-bottom: $spacing / 2;
+	padding: 0 1em;
+
+	@include ie7
+	{
+		// Make the input/button shrink to the correct size
+		overflow: visible;
+	}
+
+	background: $accent-color;
+	border: 0;
+
+	color: $accent-font-color;
+	font-size: $base-font-size;
+	font-weight: bold;
+	text-transform: uppercase;
+
+	@include cursor-hand;
+
+	@include transition(background 0.25s ease);
+
+	&:hover,
+	&:focus
+	{
+		background: darken($accent-color, 8%);
+
+		outline: none;
+	}
+	
+	&:active
+	{
+		background: lighten($accent-color, 5%);
+	}
+
+}
+
+
+// Primary Buttons
+//
+// Markup:
+// <input class="primary-button{$modifiers}" type="submit" value="Send Message">
+//
+// Styleguide 3.1
+.primary-button
+{
+	@extend %generic-button;
+}
+
+// Secondary Buttons
+//
+// Markup:
+// <input class="secondary-button{$modifiers}" type="submit" value="Send Message">
+//
+// -alternate		- Makes the button float to the right
+//
+// Styleguide 3.2
+.secondary-button
+{
+	@extend %generic-button;
+
+	margin-bottom: $spacing / 2;
+
+	font-size: $secondary-font-size;
+}
+
+.secondary-button-alternate
+{
+	@extend .secondary-button;
+
+	float: right;
+}

@@ -1,0 +1,156 @@
+@import "variables";
+@import "colors";
+@import "utility-mixins";
+
+
+.site-wrapper
+{
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.main-content
+{
+	background: $base-color;
+}
+
+
+
+
+
+.main-section
+{
+	@include clearfix;
+
+	padding: $spacing;
+	padding-bottom: 0;
+}
+
+.main-section-body
+{
+	position: relative;
+	float: left;
+	width: 71.4%;
+}
+
+.main-section-body-inner
+{
+	padding-right: $spacing;
+}
+
+.main-section-aside
+{
+	float: right;
+	position: relative;
+
+	width: 28.6%;
+}
+
+.main-section-body-alternate
+{
+	@extend .main-section-body;
+
+	float: right;
+}
+.main-section-body-alternate-inner
+{
+	@extend .main-section-body-inner;
+
+	padding-right: 0;
+	padding-left: $spacing;
+}
+.main-section-aside-alternate
+{
+	@extend .main-section-aside;
+
+	float: left;
+}
+
+
+// Used if you don't want the styling of the normal `.sidebar-block` (such as the twitter widget)
+.sidebar-block-layout
+{
+	width: 100%;
+
+	margin-bottom: $spacing;
+
+	font-size: 12px;
+
+	& > iframe
+	{
+		display: block;
+	}
+
+}
+
+.sidebar-block
+{
+	@extend .sidebar-block-layout;
+
+	background: $secondary-color;
+}
+
+.sidebar-block-content
+{
+	@include clearfix;
+
+	padding: $spacing / 2;
+	padding-bottom: 0;
+}
+
+
+
+.sidebar-block-section
+{
+	margin-bottom: $spacing / 2;
+
+	background: darken($secondary-color, 7%);
+	background: rgba(0, 0, 0, 0.07);
+
+	@include box-shadow(inset 0 0 7px 0 rgba(0, 0, 0, 0.07));
+}
+
+.sidebar-block-section-inner
+{
+	padding: $spacing / 2;
+}
+
+.sidebar-block-section-title
+{
+	display: block;
+	margin-bottom: $spacing / 2;
+	@include ie7 {
+		// ie7 does weird things with text and margin :/
+		margin-bottom: ($spacing / 2) - 4px;
+	}
+
+	// This is to get rid of the spacing on top of the title/note
+	line-height: 1;
+}
+
+.sidebar-block-endnote
+{
+	min-height: 2em;
+	@include ie7
+	{
+		// Make up for the padding in ie7
+		// Also have to make it a bit smaller because... ie7
+		min-height: 1.2em;
+	}
+
+	padding: 0.3em 0;
+
+	background: #cacaca;
+	background: rgba(0, 0, 0, 0.07);
+
+	border-top: 1px solid $secondary-seperator-color;
+
+	text-align: center;
+}
+
+.sidebar-block-endnote-centered
+{
+	@include inline-block(top);
+
+	margin: 0 auto;
+}

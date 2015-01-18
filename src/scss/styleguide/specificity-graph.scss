@@ -1,0 +1,57 @@
+.specificity-graph
+{
+
+}
+
+.specificity-graph path 
+{
+	fill: none;
+	stroke: #005060;
+	stroke-width: 4px;
+}
+
+.specificity-graph path.domain
+{
+	stroke: #0061A0;
+}
+
+.specificity-graph .axis 
+{
+	color: rgba(0, 0, 0, 0.6);
+}
+.specificity-graph .axis.location .tick
+{
+	display: none;
+}
+
+.specificity-graph .domain-label
+{
+	font-size: 0.9em;
+	fill: #222222;
+}
+
+.specificity-graph .overlay 
+{
+	fill: none;
+	pointer-events: all;
+}
+.specificity-graph .focus 
+{
+	position: relative;
+}
+	.specificity-graph .focus-text-background 
+	{
+		fill: #333;
+	}
+		.specificity-graph .focus-text 
+		{
+			font-size: 0.9em;
+			fill: #eee;
+		}
+
+	.specificity-graph .focus circle 
+	{
+		fill: none;
+		stroke-width: 2.5px;
+		stroke: #0099cc;
+	}

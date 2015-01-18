@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block pageContent %}
+<div class="main-section">
+	
+	<div class="main-section-aside-alternate" role="complementary">
+		<h1 class="primary-heading-hanging-success">
+			<span class="primary-heading-content" id="aria-contact-success-heading">Success!</span>
+		</h1>
+
+		<ul class="list" aria-labelledby="aria-contact-success-heading">
+			<li>Your message has been sent.</li>
+		</ul>
+
+
+		<h1 class="primary-heading-hanging-error">
+			<span class="primary-heading-content" id="aria-contact-error-heading">Error</span>
+		</h1>
+
+		<ul class="list" aria-labelledby="aria-contact-error-heading">
+			<li>Please enter your name</li>
+			<li>Enter a valid return email</li>
+		</ul>
+
+
+		<h1 class="primary-heading-hanging">
+			<span class="primary-heading-content" id="aria-contact-heading">Contact</span>
+		</h1>
+
+		<form class="contact-form" aria-labelledby="aria-contact-heading">
+			
+			<label for="id_form_name">Name:</label>
+			<br>
+			<input type="text" name="name" class="text-input" id="form-" placeholder="">
+
+			<label for="id_form_email">Email:</label>
+			<br>
+			<input type="text" name="email" id="id_form_email" class="text-input" placeholder="user@domain.com">
+			
+			<label for="id_form_message">Message:</label>
+			<br>
+			<textarea name="message" rows="8" id="id_form_message" class="text-area"></textarea>
+
+			<input class="secondary-button-alternate" type="submit" value="Send Message">
+		</form>
+
+	</div>
+
+	<div class="main-section-body-alternate" role="main">
+		<div class="main-section-body-alternate-inner">
+
+			<p class="paragraph">
+				Fill out and submit the form below and we will get back to you as soon as we can.
+			</p>
+			
+
+			<strong>Phone:</strong>
+			<ul class="list">
+				<li>(123) 334-6306 (phone)</li>
+				<li>(123) 334-6300 (fax)</li>
+			</ul>
+
+			<img src="images/random-vacation.jpg" alt="" role="presentation">
+
+		</div>
+	</div>
+
+
+
+</div>
+{% endblock %}

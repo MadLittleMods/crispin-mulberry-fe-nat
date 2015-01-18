@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block pageContent %}
+<div class="main-section">
+		
+	<div class="main-section-body" role="main">
+		<div class="main-section-body-inner">
+			
+			<div class="carousel">
+				<div class="carousel-stage"></div>
+
+				<ul class="carousel-thumbnail-holder">
+					{% for item in carouselItems %}
+						<li role="button" tabindex="0" class="carousel-thumbnail">
+							<img src="{{ item.img_src }}" alt="{{ item.title }}">
+							<div class="carousel-overlay">
+								<h1 class="carousel-overlay-title">{{ item.title }}</h1>
+								<div class="carousel-overlay-description">{{ item.description }}</div>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="main-section-aside" role="complementary">
+		
+		<div class="sidebar-block ad-block">
+			<a href="#0">
+				<img src="images/ads/ad1.png" alt="Advertisement: Holiday Inn. Book now and Save up to 20%">
+			</a>
+		</div>
+		<div class="sidebar-block ad-block">
+			<a href="#0">
+				<img src="images/ads/ad2.png" alt="Advertisement: Rise of the Guardians. Download today.">
+			</a>
+		</div>
+
+	</div>
+
+</div>
+
+
+
+<div class="hr">
+	<hr class="hr-strip">
+</div>
+
+
+
+<div class="main-section">
+	
+	<div class="main-section-body" role="main">
+		<div class="main-section-body-inner">
+
+			<div class="grid">
+
+				<div class="grid-item-13-50">
+					<div class="grid-item-inner">
+						<h1 class="primary-heading-hanging">
+							<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>
+							<span class="primary-heading-content" id="aria-category-heading">Browse Categories</span>
+						</h1>
+
+						{# 
+							See why we are using these particular aria attributes: http://heydonworks.com/practical_aria_examples/#progressive-collapsibles
+							 - `role="button"`: Used for clickable elements that trigger a response when activated by the user: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role
+							 - `aria-controls`: Used to indicate what is being affected by this button: http://www.w3.org/TR/wai-aria/states_and_properties#aria-controls
+							 - `aria-expanded`: Can be used on the element, or another grouping element it controls: http://www.w3.org/TR/wai-aria/states_and_properties#aria-expanded
+							 - `tabindex="-1"`: We want this focusable by screen reader but not it normal tab order. for example ChromeVox: `Chromevox+n + h` = Go to next heading
+
+						#}
+						<div role="list" aria-labelledby="aria-category-heading"> 
+							<div class="toggle-block" role="listitem">
+								<h3 class="toggle-block-title js-toggle-block-handle" id="aria-popular-destinations-toggle-heading" tabindex="-1" role="button" aria-expanded="true" aria-controls="aria-popular-destinations-toggle-content">Popular Destinations</h3>
+								<ul class="toggle-block-content" id="aria-popular-destinations-toggle-content" role="list" aria-labelledby="aria-popular-destinations-toggle-heading" aria-expanded="true">
+									{% for item in destinations|concat("All Destinations") %}
+										<li><a href="#0--{{ item|slugify }}" class="toggle-block-link">{{ item }}</a></li>
+									{% endfor %}
+								</ul>
+							</div>
+
+							<div class="toggle-block" role="listitem">
+								<h3 class="toggle-block-title js-toggle-block-handle" id="aria-getaways-toggle-heading" tabindex="-1" role="button" aria-expanded="true" aria-controls="aria-getaways-toggle-content">Getaways</h3>
+								<ul class="toggle-block-content" id="aria-getaways-toggle-content" role="list" aria-labelledby="aria-getaways-toggle-heading" aria-expanded="true">
+									{% for item in getaways|concat("All Vacations") %}
+										<li><a href="#0--{{ item|slugify }}" class="toggle-block-link">{{ item }}</a></li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="grid-item-37-50">
+					<div class="grid-item-inner">
+						<h1 class="primary-heading">
+							<div class="primary-heading-icon primary-icon-article" role="presentation"></div>
+							<span class="primary-heading-content" id="aria-recent-articles-heading">Recent Articles</span>
+						</h1>
+
+						<ul role="list" aria-labelledby="aria-recent-articles-heading">
+							{% for article in articles %}
+								<li class="article-preview">
+									<a href="#0" class="article-preview-image" aria-hidden="true" tabindex="-1">
+										<img src="{{ article.thumbnail_img_src }}" alt="" role="presentation">
+									</a>
+									<div class="article-preview-body">
+										<h3 class="article-preview-title"><a href="#0">{{ article.title }}</a></h3>
+										<p>
+											{{ article.content }}
+										</p>
+									</div>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+
+
+
+			<h1 class="primary-heading-hanging">
+				<div class="primary-heading-icon primary-icon-video" role="presentation"></div>
+				<span class="primary-heading-content" id="aria-videos-heading">Popular Videos</span>
+			</h1>
+
+			<div class="video-holder" role="list" aria-labelledby="aria-videos-heading">
+				{% for video in videos %}
+					<a href="{{ video.link }}" class="video-preview" role="listitem">
+						<img src="{{ video.thumbnail_img_src }}" alt="">
+						<div class="video-play-overlay"></div>
+						<div class="video-preview-overlay">
+							<h3 class="video-preview-overlay-title">{{ video.title }}</h3>
+						</div>
+					</a>
+				{% endfor %}
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="main-section-aside" role="complementary">
+
+		<div class="sidebar-block">
+			<div class="sidebar-block-content">
+				<h2 class="secondary-heading">
+					<div class="secondary-heading-icon secondary-icon-envelope" role="presentation"></div>
+					<span class="secondary-heading-content" id="aria-newsletter-heading">Sign up for our Newsletter</span>
+				</h2>
+
+				<form role="form" aria-labelledby="aria-newsletter-heading">
+					<input type="text" class="text-input" name="email" placeholder="user@domain.com" aria-label="Email">
+					
+					<div class="sidebar-block-section">
+						<div class="sidebar-block-section-inner">
+
+							<em class="sidebar-block-section-title" id="aria-select-newsletter-type-heading">Select the newsletters you’d like to receive</em>
+							
+							<ul role="list" aria-labelledby="aria-select-newsletter-type-heading">
+
+								<li class="input-combo-block">
+									<input type="checkbox" id="form-newsletter-destinations-checkbox" class="input-combo-block-input" name="destinations" value="true" role="checkbox" checked>
+									<label for="form-newsletter-destinations-checkbox" class="input-combo-block-label" >Destinations & Getaways</label>
+								</li>
+
+								<li class="input-combo-block">
+									<input type="checkbox" id="form-newsletter-tips-checkbox" class="input-combo-block-input" name="tips" value="true" role="checkbox" checked>
+									<label for="form-newsletter-tips-checkbox" class="input-combo-block-label">Weekly Travel Tips</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<input class="secondary-button-alternate" type="submit" value="Sign Up">
+				</form>
+
+			</div>
+			<div class="sidebar-block-endnote">
+				<ul class="sidebar-block-endnote-centered piped-list" role="list" aria-label="Newsletter policies">
+					<li class="piped-list-item"><a href="#0">Privacy Policy</a></li>
+					<li class="piped-list-item is-last"><a href="#0">Terms of Use</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="sidebar-block">
+			<div class="sidebar-block-content">
+				<h2 class="secondary-heading">
+					<div class="secondary-heading-icon secondary-icon-contest" role="presentation"></div>
+					<span class="secondary-heading-content" id="aria-contest-heading">Current Contests</span>
+				</h2>
+
+				<div role="list" aria-labelledby="aria-contest-heading">
+					{% for contest in contests %}
+						<a href="{{ contest.link }}" class="contest-preview" role="listitem">
+							<div class="contest-preview-icon" aria-hidden="true" tabindex="-1">
+								<img src="{{ contest.thumbnail_img_src }}" alt="">
+							</div>
+							<div class="contest-preview-body">
+								{{ contest.content }}
+							</div>
+						</a>
+					{% endfor %}
+				</div>
+
+
+			</div>
+		</div>
+
+		
+		<div class="sidebar-block-layout" aria-label="Crispin & Mulberry Twitter feed">
+			{# Accessibility/Keyboard-user skip after twitter widget link. The twitter feed has a bunch of tweets and links that may take a while to tab through. #}
+			<a href="#skip-link-after-twitter-widget" class="accessibility-skip-link" aria-describedby="aria-after-twitter-skip-link-description">
+				Skip over Twitter feed
+				<div class="accessibility-skip-link-description" id="aria-after-twitter-skip-link-description">Press Enter</div>
+			</a>
+			<a class="twitter-timeline" href="https://twitter.com/CrispinMulberry" data-widget-id="419571848741793793">Tweets by @CrispinMulberry</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			<div id="skip-link-after-twitter-widget" tabindex="-1"></div>
+		</div>
+
+
+	</div>
+
+
+</div>
+{% endblock %}

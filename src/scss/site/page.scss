@@ -1,0 +1,80 @@
+@import "../global/variables";
+@import "../global/colors";
+@import "../global/utility-mixins";
+
+@import "../global/mixins";
+
+
+
+
+.input-combo-block
+{
+	display: block;
+
+	margin: 6px 0;
+	@include ie7
+	{
+		margin: 0;
+	}
+
+	// Get rid of preceding and trailing margin in a list of combo blocks
+	&:first-child
+	{
+		margin-top: 0;
+	}
+
+	&:last-child
+	{
+		margin-bottom: 0;
+	}
+
+}
+
+.input-combo-block-input
+{
+	margin-right: 0.5em;
+
+	vertical-align: middle;
+}
+
+.input-combo-block-label
+{
+	vertical-align: middle;
+
+	font-weight: bold;
+}
+
+
+
+
+
+// The little link on the side that points to the styleguide
+.styleguide-tab
+{
+	@include page-tab;
+}
+
+
+// The little link on the side that points to the github source code
+.github-tab
+{
+	@include page-tab;
+}
+
+
+
+
+
+.ad-block img
+{
+	max-width: 100%;
+}
+
+
+
+
+.contact-form
+{
+	@include clearfix;
+}
+

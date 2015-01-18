@@ -1,0 +1,235 @@
+@import "../variables";
+@import "../colors";
+@import "../utility-mixins";
+
+
+// Headings
+//
+// A majority of headings in the site are built from the same placeholder: `@extend %generic-heading`
+//
+// Styleguide 2.
+
+
+%generic-heading
+{
+	display: block;
+	width: 100%;
+
+	margin: 0;
+	padding: 0;
+	
+	font-size: $secondary-font-size;
+	font-weight: bold;
+	white-space: nowrap;
+	text-transform: uppercase;
+}
+
+	%generic-heading-icon
+	{
+		@include inline-block(middle);
+
+		// Make sure the icon can't escape the heading bar
+		max-height: 100%;
+		
+		// This gets rid of any extra spacing from inline-block
+		font-size: 0;
+		line-height: 0;
+		text-align: center;
+
+		& > *
+		{
+			// Make sure the icon can't escape the heading bar
+			max-height: 100%;
+		}
+
+	}
+
+	%generic-heading-content
+	{
+		@include inline-block(middle);
+
+		padding-left: $spacing / 2;
+		height: 100%;
+	}
+
+
+
+
+// Primary Headings
+//
+// A majority of headings in the site are built from the same base class.
+// `.primary-heading-icon` can be a `img` or `div`, ex. `<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>`
+//
+// Markup:
+// <h1 class="primary-heading{$modifiers}">
+// 	<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>
+// 	<span class="primary-heading-content" id="aria-category-heading">Primary Heading</span>
+// </h1>
+//
+// -success		- Makes the heading background green indicating a success
+// -error		- Makes the heading background red indicating an error
+//
+// Styleguide 2.1
+.primary-heading
+{
+	@extend %generic-heading;
+
+	height: 34px;
+	margin-bottom: $spacing;
+
+	background: $accent-color;
+}
+
+	.primary-heading-icon
+	{
+		@extend %generic-heading-icon;
+
+		padding-left: $spacing / 2;
+	}
+	.primary-heading-content
+	{
+		@extend %generic-heading-content;
+
+		line-height: 34px;
+		color: $accent-font-color;
+	}
+
+.primary-heading-success
+{
+	@extend .primary-heading;
+	
+	background: $success-accent-color;
+}
+
+.primary-heading-error
+{
+	@extend .primary-heading;
+	
+	background: $error-accent-color;
+}
+
+
+
+
+
+// Hanging Primary Headings
+//
+// These hang off the left edge of the site wrapper and look like they wrap behind the wrapper.
+// `.primary-heading-icon` can be a `img` or `div`, ex. `<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>`
+//
+// Markup:
+// <h1 class="primary-heading-hanging{$modifiers}">
+// 	<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>
+// 	<span class="primary-heading-content" id="aria-category-heading">Primary Heading Hanging</span>
+// </h1>
+//
+// -success		- Makes the heading background green indicating a success
+// -error		- Makes the heading background red indicating an error
+//
+// Styleguide 2.2
+
+$_primary-heading-flap-width: 13px;
+$_primary-heading-flap-height: 6px;
+
+.primary-heading-hanging
+{
+	@extend .primary-heading;
+
+	position: relative;
+	left: -$spacing - $_primary-heading-flap-width;
+
+	padding-right: $spacing + $_primary-heading-flap-width;
+
+	// This allows us to make the padding add to the size of the element
+	// So we can offset to the left, and then add some to right to make up for it
+	@include box-sizing(content-box);
+
+	@include pseudo('before')
+	{
+		content: '';
+
+		@include triangle(darken($accent-color, 15%), $_primary-heading-flap-width, $_primary-heading-flap-height, up-right);
+
+		position: absolute;
+		bottom: -$_primary-heading-flap-height;
+		left: 0;
+
+		display: block;
+	}
+
+}
+
+.primary-heading-hanging-success
+{
+	@extend .primary-heading-hanging;
+	
+	background: $success-accent-color;
+
+	@include pseudo('before')
+	{
+		border-top-color: darken($success-accent-color, 22%);
+	}
+
+}
+
+.primary-heading-hanging-error
+{
+	@extend .primary-heading-hanging;
+	
+	background: $error-accent-color;
+	
+	&:before
+	{
+		border-top-color: darken($error-accent-color, 22%);
+	}
+
+}
+
+
+
+
+
+// Secondary Headings
+//
+// Headings used in sidebar blocks
+// `.secondary-heading-icon` can be a `img` or `div`, ex. `<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>`
+//
+// Markup:
+// <h1 class="secondary-heading">
+// 	<div class="secondary-heading-icon secondary-icon-envelope" role="presentation"></div>
+// 	<span class="secondary-heading-content" id="aria-category-heading">Secondary Heading</span>
+// </h1>
+//
+// Styleguide 2.3
+.secondary-heading
+{
+	@extend %generic-heading;
+	
+	margin-bottom: $spacing / 2;
+
+	// Reduce the spacing on the top and bottom the title text to match psd
+	line-height: 1;
+	@include ie7
+	{
+		// ie7 doesn't like the line-height being 1 but this makes it look normal
+		line-height: $base-line-height;
+	}
+
+	padding: 0;
+	padding-bottom: 8px;
+
+	border-bottom: 1px solid $secondary-seperator-color;
+	// The actual PSD used a rgba color which does not fit the rest of the document
+	// border-bottom: 1px solid rgba(42, 42, 42, 0.39);
+}
+
+	.secondary-heading-icon
+	{
+		@extend %generic-heading-icon;
+	}
+	.secondary-heading-content
+	{
+		@extend %generic-heading-content;
+
+		padding-left: 6px;
+	}
