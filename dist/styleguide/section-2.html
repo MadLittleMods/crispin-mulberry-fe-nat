@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Styleguide - Crispin & Mulberry</title>
+
+
+	
+	<link rel="stylesheet" href="../css/all-styleguide.css">
+
+	
+	<link rel="stylesheet" href="../css/styleguide-styles.css">
+
+	
+	<script type="text/javascript" src="../js/lib/require.js"></script>
+	<script src="../js/styleguide-main.js"></script>
+</head>
+<body>
+	
+	<div class="sg-main-sidebar">
+		<h1 class="sg-sidebar-title">Crispin & Mulberry Styleguide</h1>
+
+		<nav class="sg-root-section-nav">
+			<ul>
+				<li class="sg-root-section-nav-item">
+					<a href="index.html" class="sg-root-section-nav-item-link">Overview</a>
+				</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-1.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">1</span>
+							<span class="sg-nav-item-section-header">Colors</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-2.html" class="sg-root-section-nav-item-link is-active">
+							<span class="sg-nav-item-section-reference">2</span>
+							<span class="sg-nav-item-section-header">Headings</span>
+						</a>
+
+						
+							<ul class="section-nav">
+								
+									<li class="sg-section-nav-item">
+										<a href="#section-2.1" class="sg-section-nav-item-link">
+											<span class="sg-nav-item-section-reference">2.1</span>
+											<span class="sg-nav-item-section-header">Primary Headings</span>
+										</a>
+									</li>
+								
+									<li class="sg-section-nav-item">
+										<a href="#section-2.2" class="sg-section-nav-item-link">
+											<span class="sg-nav-item-section-reference">2.2</span>
+											<span class="sg-nav-item-section-header">Hanging Primary Headings</span>
+										</a>
+									</li>
+								
+									<li class="sg-section-nav-item">
+										<a href="#section-2.3" class="sg-section-nav-item-link">
+											<span class="sg-nav-item-section-reference">2.3</span>
+											<span class="sg-nav-item-section-header">Secondary Headings</span>
+										</a>
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-3.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">3</span>
+							<span class="sg-nav-item-section-header">Buttons</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-4.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">4</span>
+							<span class="sg-nav-item-section-header">Lists</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-5.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">5</span>
+							<span class="sg-nav-item-section-header">Grid</span>
+						</a>
+
+						
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+
+	<div class="sg-main-content">
+		
+	<h2 class="sg-kss-root-title">2 - Headings</h2>
+	
+		<div class="sg-kss-root-description sg-use-markdown">
+			<p>A majority of headings in the site are built from the same placeholder: <code>@extend %generic-heading</code></p>
+
+		</div>
+	
+
+	
+		<h3 id="section-2.1" class="sg-kss-section-title">2.1 - Primary Headings</h3>
+		<div class="sg-kss-section-description sg-use-markdown"><p>A majority of headings in the site are built from the same base class.
+<code>.primary-heading-icon</code> can be a <code>img</code> or <code>div</code>, ex. <code>&lt;div class=&quot;primary-heading-icon primary-icon-folder&quot; role=&quot;presentation&quot;&gt;&lt;/div&gt;</code></p>
+</div>
+		
+		
+		
+			<div class="sg-markup-sandbox">
+				<h1 class="primary-heading">
+	<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>
+	<span class="primary-heading-content" id="aria-category-heading">Primary Heading</span>
+</h1>
+			</div>
+		
+		
+		
+			<pre class="sg-code-block"><code>&lt;h1 class=&quot;primary-heading{$modifiers}&quot;&gt;
+	&lt;div class=&quot;primary-heading-icon primary-icon-folder&quot; role=&quot;presentation&quot;&gt;&lt;/div&gt;
+	&lt;span class=&quot;primary-heading-content&quot; id=&quot;aria-category-heading&quot;&gt;Primary Heading&lt;/span&gt;
+&lt;/h1&gt;</code></pre>
+		
+
+		
+			<div class="sg-modifier-box">
+				<div class="sg-modifier-info-box">
+					<div class="sg-modifier-name">-success</div>
+					
+						<div class="sg-modifier-description sg-use-markdown">Makes the heading background green indicating a success</div>
+					
+				</div>
+				
+					<div class="sg-markup-sandbox">
+						<h1 class="primary-heading-success">
+	<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>
+	<span class="primary-heading-content" id="aria-category-heading">Primary Heading</span>
+</h1>
+					</div>
+				
+			</div>
+		
+			<div class="sg-modifier-box">
+				<div class="sg-modifier-info-box">
+					<div class="sg-modifier-name">-error</div>
+					
+						<div class="sg-modifier-description sg-use-markdown">Makes the heading background red indicating an error</div>
+					
+				</div>
+				
+					<div class="sg-markup-sandbox">
+						<h1 class="primary-heading-error">
+	<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>
+	<span class="primary-heading-content" id="aria-category-heading">Primary Heading</span>
+</h1>
+					</div>
+				
+			</div>
+		
+	
+		<h3 id="section-2.2" class="sg-kss-section-title">2.2 - Hanging Primary Headings</h3>
+		<div class="sg-kss-section-description sg-use-markdown"><p>These hang off the left edge of the site wrapper and look like they wrap behind the wrapper.
+<code>.primary-heading-icon</code> can be a <code>img</code> or <code>div</code>, ex. <code>&lt;div class=&quot;primary-heading-icon primary-icon-folder&quot; role=&quot;presentation&quot;&gt;&lt;/div&gt;</code></p>
+</div>
+		
+		
+		
+			<div class="sg-markup-sandbox">
+				<h1 class="primary-heading-hanging">
+	<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>
+	<span class="primary-heading-content" id="aria-category-heading">Primary Heading Hanging</span>
+</h1>
+			</div>
+		
+		
+		
+			<pre class="sg-code-block"><code>&lt;h1 class=&quot;primary-heading-hanging{$modifiers}&quot;&gt;
+	&lt;div class=&quot;primary-heading-icon primary-icon-folder&quot; role=&quot;presentation&quot;&gt;&lt;/div&gt;
+	&lt;span class=&quot;primary-heading-content&quot; id=&quot;aria-category-heading&quot;&gt;Primary Heading Hanging&lt;/span&gt;
+&lt;/h1&gt;</code></pre>
+		
+
+		
+			<div class="sg-modifier-box">
+				<div class="sg-modifier-info-box">
+					<div class="sg-modifier-name">-success</div>
+					
+						<div class="sg-modifier-description sg-use-markdown">Makes the heading background green indicating a success</div>
+					
+				</div>
+				
+					<div class="sg-markup-sandbox">
+						<h1 class="primary-heading-hanging-success">
+	<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>
+	<span class="primary-heading-content" id="aria-category-heading">Primary Heading Hanging</span>
+</h1>
+					</div>
+				
+			</div>
+		
+			<div class="sg-modifier-box">
+				<div class="sg-modifier-info-box">
+					<div class="sg-modifier-name">-error</div>
+					
+						<div class="sg-modifier-description sg-use-markdown">Makes the heading background red indicating an error</div>
+					
+				</div>
+				
+					<div class="sg-markup-sandbox">
+						<h1 class="primary-heading-hanging-error">
+	<div class="primary-heading-icon primary-icon-folder" role="presentation"></div>
+	<span class="primary-heading-content" id="aria-category-heading">Primary Heading Hanging</span>
+</h1>
+					</div>
+				
+			</div>
+		
+	
+		<h3 id="section-2.3" class="sg-kss-section-title">2.3 - Secondary Headings</h3>
+		<div class="sg-kss-section-description sg-use-markdown"><p>Headings used in sidebar blocks
+<code>.secondary-heading-icon</code> can be a <code>img</code> or <code>div</code>, ex. <code>&lt;div class=&quot;primary-heading-icon primary-icon-folder&quot; role=&quot;presentation&quot;&gt;&lt;/div&gt;</code></p>
+</div>
+		
+		
+		
+			<div class="sg-markup-sandbox">
+				<h1 class="secondary-heading">
+	<div class="secondary-heading-icon secondary-icon-envelope" role="presentation"></div>
+	<span class="secondary-heading-content" id="aria-category-heading">Secondary Heading</span>
+</h1>
+			</div>
+		
+		
+		
+			<pre class="sg-code-block"><code>&lt;h1 class=&quot;secondary-heading&quot;&gt;
+	&lt;div class=&quot;secondary-heading-icon secondary-icon-envelope&quot; role=&quot;presentation&quot;&gt;&lt;/div&gt;
+	&lt;span class=&quot;secondary-heading-content&quot; id=&quot;aria-category-heading&quot;&gt;Secondary Heading&lt;/span&gt;
+&lt;/h1&gt;</code></pre>
+		
+
+		
+	
+
+
+
+		<div class="sg-footer-note">
+			Made with <a href="https://github.com/MadLittleMods/gulp-kss-styleguide" class="sg-link">gulp-kss-styleguide</a>
+		</div>
+	</div>
+
+	
+
+</body>
+</html>

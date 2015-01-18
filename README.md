@@ -1,6 +1,6 @@
-# Crispin & Mulberry: Nerdery Front-end Nerd Assessment Test (NAT)
+# Crispin & Mulberry: Nerdery Front-end (NAT)
 
-The NAT is a code challenge and technical component of the Nerdery candidate interview process.
+The NAT(Nerd Assessment Test) is a code challenge and technical component of the Nerdery candidate interview process.
 
 The instructions given are available here.
 

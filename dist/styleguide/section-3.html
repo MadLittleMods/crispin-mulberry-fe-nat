@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Styleguide - Crispin & Mulberry</title>
+
+
+	
+	<link rel="stylesheet" href="../css/all-styleguide.css">
+
+	
+	<link rel="stylesheet" href="../css/styleguide-styles.css">
+
+	
+	<script type="text/javascript" src="../js/lib/require.js"></script>
+	<script src="../js/styleguide-main.js"></script>
+</head>
+<body>
+	
+	<div class="sg-main-sidebar">
+		<h1 class="sg-sidebar-title">Crispin & Mulberry Styleguide</h1>
+
+		<nav class="sg-root-section-nav">
+			<ul>
+				<li class="sg-root-section-nav-item">
+					<a href="index.html" class="sg-root-section-nav-item-link">Overview</a>
+				</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-1.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">1</span>
+							<span class="sg-nav-item-section-header">Colors</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-2.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">2</span>
+							<span class="sg-nav-item-section-header">Headings</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-3.html" class="sg-root-section-nav-item-link is-active">
+							<span class="sg-nav-item-section-reference">3</span>
+							<span class="sg-nav-item-section-header">Buttons</span>
+						</a>
+
+						
+							<ul class="section-nav">
+								
+									<li class="sg-section-nav-item">
+										<a href="#section-3.1" class="sg-section-nav-item-link">
+											<span class="sg-nav-item-section-reference">3.1</span>
+											<span class="sg-nav-item-section-header">Primary Buttons</span>
+										</a>
+									</li>
+								
+									<li class="sg-section-nav-item">
+										<a href="#section-3.2" class="sg-section-nav-item-link">
+											<span class="sg-nav-item-section-reference">3.2</span>
+											<span class="sg-nav-item-section-header">Secondary Buttons</span>
+										</a>
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-4.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">4</span>
+							<span class="sg-nav-item-section-header">Lists</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-5.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">5</span>
+							<span class="sg-nav-item-section-header">Grid</span>
+						</a>
+
+						
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+
+	<div class="sg-main-content">
+		
+	<h2 class="sg-kss-root-title">3 - Buttons</h2>
+	
+		<div class="sg-kss-root-description sg-use-markdown">
+			<p>Most buttons are built from the same placeholder: <code>@extend %generic-button</code></p>
+
+		</div>
+	
+
+	
+		<h3 id="section-3.1" class="sg-kss-section-title">3.1 - Primary Buttons</h3>
+		
+		
+		
+		
+			<div class="sg-markup-sandbox">
+				<input class="primary-button" type="submit" value="Send Message">
+			</div>
+		
+		
+		
+			<pre class="sg-code-block"><code>&lt;input class=&quot;primary-button{$modifiers}&quot; type=&quot;submit&quot; value=&quot;Send Message&quot;&gt;</code></pre>
+		
+
+		
+	
+		<h3 id="section-3.2" class="sg-kss-section-title">3.2 - Secondary Buttons</h3>
+		
+		
+		
+		
+			<div class="sg-markup-sandbox">
+				<input class="secondary-button" type="submit" value="Send Message">
+			</div>
+		
+		
+		
+			<pre class="sg-code-block"><code>&lt;input class=&quot;secondary-button{$modifiers}&quot; type=&quot;submit&quot; value=&quot;Send Message&quot;&gt;</code></pre>
+		
+
+		
+			<div class="sg-modifier-box">
+				<div class="sg-modifier-info-box">
+					<div class="sg-modifier-name">-alternate</div>
+					
+						<div class="sg-modifier-description sg-use-markdown">Makes the button float to the right</div>
+					
+				</div>
+				
+					<div class="sg-markup-sandbox">
+						<input class="secondary-button-alternate" type="submit" value="Send Message">
+					</div>
+				
+			</div>
+		
+	
+
+
+
+		<div class="sg-footer-note">
+			Made with <a href="https://github.com/MadLittleMods/gulp-kss-styleguide" class="sg-link">gulp-kss-styleguide</a>
+		</div>
+	</div>
+
+	
+
+</body>
+</html>

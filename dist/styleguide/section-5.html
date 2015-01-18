@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Styleguide - Crispin & Mulberry</title>
+
+
+	
+	<link rel="stylesheet" href="../css/all-styleguide.css">
+
+	
+	<link rel="stylesheet" href="../css/styleguide-styles.css">
+
+	
+	<script type="text/javascript" src="../js/lib/require.js"></script>
+	<script src="../js/styleguide-main.js"></script>
+</head>
+<body>
+	
+	<div class="sg-main-sidebar">
+		<h1 class="sg-sidebar-title">Crispin & Mulberry Styleguide</h1>
+
+		<nav class="sg-root-section-nav">
+			<ul>
+				<li class="sg-root-section-nav-item">
+					<a href="index.html" class="sg-root-section-nav-item-link">Overview</a>
+				</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-1.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">1</span>
+							<span class="sg-nav-item-section-header">Colors</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-2.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">2</span>
+							<span class="sg-nav-item-section-header">Headings</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-3.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">3</span>
+							<span class="sg-nav-item-section-header">Buttons</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-4.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">4</span>
+							<span class="sg-nav-item-section-header">Lists</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-5.html" class="sg-root-section-nav-item-link is-active">
+							<span class="sg-nav-item-section-reference">5</span>
+							<span class="sg-nav-item-section-header">Grid</span>
+						</a>
+
+						
+							<ul class="section-nav">
+								
+									<li class="sg-section-nav-item">
+										<a href="#section-5.1" class="sg-section-nav-item-link">
+											<span class="sg-nav-item-section-reference">5.1</span>
+											<span class="sg-nav-item-section-header">Grid 50's</span>
+										</a>
+									</li>
+								
+									<li class="sg-section-nav-item">
+										<a href="#section-5.1.1" class="sg-section-nav-item-link">
+											<span class="sg-nav-item-section-reference">5.1.1</span>
+											<span class="sg-nav-item-section-header">Grid 50's with Spacing</span>
+										</a>
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+
+	<div class="sg-main-content">
+		
+	<h2 class="sg-kss-root-title">5 - Grid</h2>
+	
+		<div class="sg-kss-root-description sg-use-markdown">
+			<p>Used to separate content.</p>
+<p>This is a point of contention because a base-10 grid would work great; But in order to get pixel perfection of the PSD, we need this fine granularity.</p>
+<p>We use a float-based grid because <code>inline-block</code> has problems with white-space which can be mitigated with <code>font-size: 0; line-height: 0;</code> but then requires you to override again to set the font-size back to something useful for the children.</p>
+
+		</div>
+	
+
+	
+		<h3 id="section-5.1" class="sg-kss-section-title">5.1 - Grid 50's</h3>
+		<div class="sg-kss-section-description sg-use-markdown"><p>Fifty&#39;s grid. The grid can be used anywhere but it was coded for use in the <code>.main-section</code> and <code>.main-section-body</code>.</p>
+<p><em>Ignore the <code>.sg-grid-sandbox</code> wrapping div. This is only for showing of fthe grid in the styleguide.</em></p>
+</div>
+		
+		
+		
+			<div class="sg-markup-sandbox">
+				<div class="sg-grid-sandbox">
+	<div class="grid">
+		<div class="grid-item-10-50"><div class="sg-grid-item-fill">10</div></div>
+		<div class="grid-item-40-50"><div class="sg-grid-item-fill">40</div></div>
+	</div>
+	<div class="grid">
+		<div class="grid-item-13-50"><div class="sg-grid-item-fill">13</div></div>
+		<div class="grid-item-37-50"><div class="sg-grid-item-fill">37</div></div>
+	</div>
+	<div class="grid">
+		<div class="grid-item-15-50"><div class="sg-grid-item-fill">15</div></div>
+		<div class="grid-item-15-50"><div class="sg-grid-item-fill">15</div></div>
+		<div class="grid-item-20-50"><div class="sg-grid-item-fill">30</div></div>
+	</div>
+	<div class="grid">
+		<div class="grid-item-20-50"><div class="sg-grid-item-fill">20</div></div>
+		<div class="grid-item-30-50"><div class="sg-grid-item-fill">30</div></div>
+	</div>
+	<div class="grid">
+		<div class="grid-item-10-50"><div class="sg-grid-item-fill">10</div></div>
+		<div class="grid-item-20-50"><div class="sg-grid-item-fill">20</div></div>
+		<div class="grid-item-20-50"><div class="sg-grid-item-fill">20</div></div>
+	</div>
+	<div class="grid">
+		<div class="grid-item-5-50"><div class="sg-grid-item-fill">5</div></div>
+		<div class="grid-item-5-50"><div class="sg-grid-item-fill">5</div></div>
+		<div class="grid-item-5-50"><div class="sg-grid-item-fill">5</div></div>
+		<div class="grid-item-5-50"><div class="sg-grid-item-fill">5</div></div>
+		<div class="grid-item-5-50"><div class="sg-grid-item-fill">5</div></div>
+		<div class="grid-item-5-50"><div class="sg-grid-item-fill">5</div></div>
+		<div class="grid-item-5-50"><div class="sg-grid-item-fill">5</div></div>
+		<div class="grid-item-5-50"><div class="sg-grid-item-fill">5</div></div>
+		<div class="grid-item-5-50"><div class="sg-grid-item-fill">5</div></div>
+		<div class="grid-item-5-50"><div class="sg-grid-item-fill">5</div></div>
+	</div>
+</div>
+			</div>
+		
+		
+		
+			<pre class="sg-code-block"><code>&lt;div class=&quot;sg-grid-sandbox&quot;&gt;
+	&lt;div class=&quot;grid&quot;&gt;
+		&lt;div class=&quot;grid-item-10-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;10&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-40-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;40&lt;/div&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;grid&quot;&gt;
+		&lt;div class=&quot;grid-item-13-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;13&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-37-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;37&lt;/div&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;grid&quot;&gt;
+		&lt;div class=&quot;grid-item-15-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;15&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-15-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;15&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-20-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;30&lt;/div&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;grid&quot;&gt;
+		&lt;div class=&quot;grid-item-20-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;20&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-30-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;30&lt;/div&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;grid&quot;&gt;
+		&lt;div class=&quot;grid-item-10-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;10&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-20-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;20&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-20-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;20&lt;/div&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;grid&quot;&gt;
+		&lt;div class=&quot;grid-item-5-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;5&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-5-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;5&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-5-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;5&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-5-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;5&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-5-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;5&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-5-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;5&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-5-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;5&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-5-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;5&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-5-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;5&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-5-50&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;5&lt;/div&gt;&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		
+
+		
+	
+		<h3 id="section-5.1.1" class="sg-kss-section-title">5.1.1 - Grid 50's with Spacing</h3>
+		<div class="sg-kss-section-description sg-use-markdown"><p>Add an inner <code>.grid-item-inner</code> div to get some spacing between items/cells. The whole grid system markup could be simpler(<em>no inner element</em>) if the old IE&#39;s supported <code>box-sizing: border-box;</code></p>
+</div>
+		
+		
+		
+			<div class="sg-markup-sandbox">
+				<div class="sg-grid-sandbox">
+	<div class="grid">
+		<div class="grid-item-13-50"><div class="grid-item-inner"><div class="sg-grid-item-fill">13</div></div></div>
+		<div class="grid-item-37-50"><div class="grid-item-inner"><div class="sg-grid-item-fill">37</div></div></div>
+	</div>
+	<div class="grid">
+		<div class="grid-item-10-50"><div class="grid-item-inner"><div class="sg-grid-item-fill">10</div></div></div>
+		<div class="grid-item-20-50"><div class="grid-item-inner"><div class="sg-grid-item-fill">20</div></div></div>
+		<div class="grid-item-20-50"><div class="grid-item-inner"><div class="sg-grid-item-fill">20</div></div></div>
+	</div>
+</div>
+			</div>
+		
+		
+		
+			<pre class="sg-code-block"><code>&lt;div class=&quot;sg-grid-sandbox&quot;&gt;
+	&lt;div class=&quot;grid&quot;&gt;
+		&lt;div class=&quot;grid-item-13-50&quot;&gt;&lt;div class=&quot;grid-item-inner&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;13&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-37-50&quot;&gt;&lt;div class=&quot;grid-item-inner&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;37&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;grid&quot;&gt;
+		&lt;div class=&quot;grid-item-10-50&quot;&gt;&lt;div class=&quot;grid-item-inner&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;10&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-20-50&quot;&gt;&lt;div class=&quot;grid-item-inner&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;20&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+		&lt;div class=&quot;grid-item-20-50&quot;&gt;&lt;div class=&quot;grid-item-inner&quot;&gt;&lt;div class=&quot;sg-grid-item-fill&quot;&gt;20&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		
+
+		
+	
+
+
+
+		<div class="sg-footer-note">
+			Made with <a href="https://github.com/MadLittleMods/gulp-kss-styleguide" class="sg-link">gulp-kss-styleguide</a>
+		</div>
+	</div>
+
+	
+
+</body>
+</html>
