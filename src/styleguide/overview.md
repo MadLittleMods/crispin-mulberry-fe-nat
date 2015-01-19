@@ -1,4 +1,4 @@
-# Living styleguide for Crispin & Mulberry
+# Living styleguide for [Crispin & Mulberry](../)
 
 Generated from [KSS documentation](https://github.com/kneath/kss) in the styles. Be sure explore the other sections(sidebar on the left) of this guide.
 
