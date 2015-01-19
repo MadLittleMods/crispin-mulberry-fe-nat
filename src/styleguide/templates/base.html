@@ -24,6 +24,17 @@
 			<ul>
 				<li class="sg-root-section-nav-item">
 					<a href="index.html" class="sg-root-section-nav-item-link{% if isOverview %} is-active{% endif %}">Overview</a>
+	
+					{% if isOverview %}
+						<ul class="section-nav">
+							<li class="sg-section-nav-item">
+								<a href="overview-code-health.html" class="sg-section-nav-item-link">Code Health</a>
+							</li>
+							<li class="sg-section-nav-item">
+								<a href="overview-code-conventions.html" class="sg-section-nav-item-link">Code Conventions</a>
+							</li>
+						</ul>
+					{% endif %}
 				</li>
 				{% for rootReference, rootSection in kssMap %}
 					<li class="sg-root-section-nav-item">

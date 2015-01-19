@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Styleguide - Crispin &amp; Mulberry</title>
+
+
+	
+	<link rel="stylesheet" href="../css/all-styleguide.css">
+
+	
+	<link rel="stylesheet" href="../css/styleguide-styles.css">
+
+	
+	<script type="text/javascript" src="../js/lib/require.js"></script>
+	<script src="../js/styleguide-main.js"></script>
+</head>
+<body>
+	
+	<div class="sg-main-sidebar">
+		<h1 class="sg-sidebar-title">Crispin &amp; Mulberry Styleguide</h1>
+
+		<nav class="sg-root-section-nav">
+			<ul>
+				<li class="sg-root-section-nav-item">
+					<a href="index.html" class="sg-root-section-nav-item-link is-active">Overview</a>
+	
+					
+						<ul class="section-nav">
+							<li class="sg-section-nav-item">
+								<a href="overview-code-health.html" class="sg-section-nav-item-link">Code Health</a>
+							</li>
+							<li class="sg-section-nav-item">
+								<a href="overview-code-conventions.html" class="sg-section-nav-item-link">Code Conventions</a>
+							</li>
+						</ul>
+					
+				</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-1.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">1</span>
+							<span class="sg-nav-item-section-header">Colors</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-2.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">2</span>
+							<span class="sg-nav-item-section-header">Headings</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-3.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">3</span>
+							<span class="sg-nav-item-section-header">Buttons</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-4.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">4</span>
+							<span class="sg-nav-item-section-header">Lists</span>
+						</a>
+
+						
+					</li>
+				
+					<li class="sg-root-section-nav-item">
+						<a href="section-5.html" class="sg-root-section-nav-item-link">
+							<span class="sg-nav-item-section-reference">5</span>
+							<span class="sg-nav-item-section-header">Grid</span>
+						</a>
+
+						
+					</li>
+				
+			</ul>
+		</nav>
+	</div>
+
+	<div class="sg-main-content">
+		
+	<div class="sg-use-markdown">
+		<h1><a href="#code-project-health" id="code-project-health" class="heading-permalink" aria-hidden="true"></a>Code/Project Health</h1><h2><a href="#css-specificity-graph" id="css-specificity-graph" class="heading-permalink" aria-hidden="true"></a>CSS Specificity Graph</h2><p>If you are new to specificity graph&#39;s or CSS specificity, <a href="https://decadecity.net/blog/2014/11/26/css-specificity-graphs">this is a great article</a> that explains how to analyze the graph and what a good graph should look like.</p>
+<ul>
+<li>Lower is better.</li>
+<li>Saw tooth is expected.</li>
+<li>Large spikes are not desired.</li>
+<li>A gradual increase in specificity as location increases is expected and natural.</li>
+<li>The Y-axis is a specificity sum(not the same as specificity) but works well.</li>
+</ul>
+<svg class="specificity-graph" viewBox='0 0 1000 310'></svg>
+
+
+
+<h2><a href="#browser-visual-disparity" id="browser-visual-disparity" class="heading-permalink" aria-hidden="true"></a>Browser Visual Disparity</h2><p>Here is a list of disparity that is out of our control and will cause a slight devation from pixel-perfection from the design. This list of factors will contribute about 6%(based off of Chrome) of difference even though the design/layout is nearly perfect. Be sure to check out the difference image maps linked to the percentage numbers in the table to understand where the difference is coming from.</p>
+<ul>
+<li>Slight differences in font. Browsers and OS&#39;s render fonts differently from Photoshop. This could also cause different word-breaks.<ul>
+<li>In the future, we could possibly mitigate this effect by using solid blocks of the font color in place of the text.</li>
+</ul>
+</li>
+<li>Twitter feed embed widget. The current tweets will be different, avatar, etc.<ul>
+<li>The twitter feed widget does not work in IE7-8 because <a href="https://blog.twitter.com/2013/tfw-ie6-ie7-support">Twitter deprecated support</a>.</li>
+</ul>
+</li>
+<li>Browser differences in native checkboxes, etc</li>
+</ul>
+<p>We are doing a straight pixel-to-pixel comparison with a slight pixel color tolerance to try to mitigate the difference in font aliasing. This means that there is barely any room to fudge details.</p>
+<p>You can view the difference image maps by clicking the disparity percentages in the table.</p>
+<div class="regression-analyses-table-box"></div>
+
+<h4><a href="#internet-explorer-7" id="internet-explorer-7" class="heading-permalink" aria-hidden="true"></a>Internet Explorer 7</h4><p>When testing the design for IE7, please use one of following environments:</p>
+<ul>
+<li>IE11 emulated IE7 document mode in the <a href="http://msdn.microsoft.com/en-us/library/ie/ms537183.aspx"><code>localhost zone</code></a></li>
+<li>Use true IE7 in Windows XP. CSS expressions/dynamic properties are supported in every <a href="http://msdn.microsoft.com/en-us/library/ie/ms537183.aspx">zone</a> in true IE7.</li>
+<li>IE11 emulated IE7 document mode in the trusted zone(instructions below)<ul>
+<li>Add a site to the <code>trusted zone</code> in IE11: <code>Gear Icon-&gt;Internet Options-&gt;Security-&gt;Trusted sites-&gt;Sites button-&gt;Uncheck require https:// box at the bottom-&gt;Add the url</code></li>
+</ul>
+</li>
+</ul>
+<p>The site in IE7 is fully functional in true IE7 and even functions without CSS expressions/dynamic properties. But CSS expressions add some nice UI features, for example icons, that we would normally use pseudo class for in modern browsers.</p>
+<p>The reason you have to be in the localhost or trusted zone when using IE11 emulated IE7 document mode is because CSS expressions/dynamic properties are <a href="http://msdn.microsoft.com/en-us/library/ie/dn384050.aspx">&quot;no longer supported for the Internet zone&quot; in IE11+&quot;</a>.</p>
+
+	</div>
+
+
+
+		<div class="sg-footer-note">
+			Made with <a href="https://github.com/MadLittleMods/gulp-kss-styleguide" class="sg-link">gulp-kss-styleguide</a>
+		</div>
+	</div>
+
+	
+
+</body>
+</html>

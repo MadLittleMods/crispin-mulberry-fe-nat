@@ -24,6 +24,17 @@
 			<ul>
 				<li class="sg-root-section-nav-item">
 					<a href="index.html" class="sg-root-section-nav-item-link is-active">Overview</a>
+	
+					
+						<ul class="section-nav">
+							<li class="sg-section-nav-item">
+								<a href="overview-code-health.html" class="sg-section-nav-item-link">Code Health</a>
+							</li>
+							<li class="sg-section-nav-item">
+								<a href="overview-code-conventions.html" class="sg-section-nav-item-link">Code Conventions</a>
+							</li>
+						</ul>
+					
 				</li>
 				
 					<li class="sg-root-section-nav-item">
@@ -83,6 +94,7 @@
 <li><strong>Gulp:</strong> We are using Gulp as the task runner for this project. <em>See the &quot;How to build&quot; section below.</em></li>
 <li><strong>Nunjucks templating:</strong> This project uses <a href="https://mozilla.github.io/nunjucks/">Nunjucks templates</a>, because they are more powerful and allow for easy page extension unlike Handlebars.</li>
 <li><strong>Sass:</strong> &quot;CSS with superpowers&quot;, as the official site says.</li>
+<li>Fully accessible to keyboard users and screen readers</li>
 </ul>
 <h2><a href="#cross-browser-support" id="cross-browser-support" class="heading-permalink" aria-hidden="true"></a>Cross browser Support</h2><ul>
 <li>All modern browsers<ul>
@@ -125,194 +137,7 @@
 <h3><a href="#complete-build" id="complete-build" class="heading-permalink" aria-hidden="true"></a>Complete Build</h3><p><code>gulp complete-build</code></p>
 <p>The complete build will regenerate everything from the bare <code>src</code> folder and root documents.</p>
 <p>You shouldn&#39;t be using this very often because it takes a while to complete and includes tasks that only need to be done every once and while.</p>
-<h1><a href="#code-project-health" id="code-project-health" class="heading-permalink" aria-hidden="true"></a>Code/Project Health</h1><h2><a href="#css-specificity-graph" id="css-specificity-graph" class="heading-permalink" aria-hidden="true"></a>CSS Specificity Graph</h2><p>If you are new to specificity graph&#39;s or CSS specificity, <a href="https://decadecity.net/blog/2014/11/26/css-specificity-graphs">this is a great article</a> that explains how to analyze the graph and what a good graph should look like.</p>
-<ul>
-<li>Lower is better.</li>
-<li>Saw tooth is expected.</li>
-<li>Large spikes are not desired.</li>
-<li>A gradual increase in specificity as location increases is expected and natural.</li>
-<li>The Y-axis is a specificity sum(not the same as specificity) but works well.</li>
-</ul>
-<svg class="specificity-graph" viewBox='0 0 1000 310'></svg>
 
-
-
-<h2><a href="#browser-visual-disparity" id="browser-visual-disparity" class="heading-permalink" aria-hidden="true"></a>Browser Visual Disparity</h2><p>Here is a list of disparity that is out of our control and will cause a slight devation from pixel-perfection from the design. This list of factors will contribute about 6%(based off of Chrome) of difference even though the design/layout is nearly perfect. Be sure to check out the difference image maps linked to the percentage numbers in the table to understand where the difference is coming from.</p>
-<ul>
-<li>Slight differences in font. Browsers and OS&#39;s render fonts differently from Photoshop. This could also cause different word-breaks.<ul>
-<li>In the future, we could possibly mitigate this effect by using solid blocks of the font color in place of the text.</li>
-</ul>
-</li>
-<li>Twitter feed embed widget. The current tweets will be different, avatar, etc.<ul>
-<li>The twitter feed widget does not work in IE7-8 because <a href="https://blog.twitter.com/2013/tfw-ie6-ie7-support">Twitter deprecated support</a>.</li>
-</ul>
-</li>
-<li>Browser differences in native checkboxes, etc</li>
-</ul>
-<p>We are doing a straight pixel-to-pixel comparison with a slight pixel color tolerance to try to mitigate the difference in font aliasing. This means that there is barely any room to fudge details.</p>
-<p>You can view the difference image maps by clicking the disparity percentages in the table.</p>
-<div class="regression-analyses-table-box"></div>
-
-<h4><a href="#internet-explorer-7" id="internet-explorer-7" class="heading-permalink" aria-hidden="true"></a>Internet Explorer 7</h4><p>When testing the design for IE7, please use one of following environments:</p>
-<ul>
-<li>IE11 emulated IE7 document mode in the <a href="http://msdn.microsoft.com/en-us/library/ie/ms537183.aspx"><code>localhost zone</code></a></li>
-<li>Use true IE7 in Windows XP. CSS expressions/dynamic properties are supported in every <a href="http://msdn.microsoft.com/en-us/library/ie/ms537183.aspx">zone</a> in true IE7.</li>
-<li>IE11 emulated IE7 document mode in the trusted zone(instructions below)<ul>
-<li>Add a site to the <code>trusted zone</code> in IE11: <code>Gear Icon-&gt;Internet Options-&gt;Security-&gt;Trusted sites-&gt;Sites button-&gt;Uncheck require https:// box at the bottom-&gt;Add the url</code></li>
-</ul>
-</li>
-</ul>
-<p>The site in IE7 is fully functional in true IE7 and even functions without CSS expressions/dynamic properties. But CSS expressions add some nice UI features, for example icons, that we would normally use pseudo class for in modern browsers.</p>
-<p>The reason you have to be in the localhost or trusted zone when using IE11 emulated IE7 document mode is because CSS expressions/dynamic properties are <a href="http://msdn.microsoft.com/en-us/library/ie/dn384050.aspx">&quot;no longer supported for the Internet zone&quot; in IE11+&quot;</a>.</p>
-<h1><a href="#conventions" id="conventions" class="heading-permalink" aria-hidden="true"></a>Conventions</h1><p>The following points are guidelines, not rules. Feel free to break them when it makes sense and helps maintainability.</p>
-<h3><a href="#further-reading-" id="further-reading-" class="heading-permalink" aria-hidden="true"></a>Further Reading:</h3><p>You have read the conventions below, but want to learn more best practices? Check out <a href="https://github.com/davidtheclark/scalable-css-reading-list">this list of articles, A Scalable CSS Reading List</a>. Some of the articles may be conflicting, but they should get you further in the same mindset of this project.</p>
-<h2><a href="#accessibility" id="accessibility" class="heading-permalink" aria-hidden="true"></a>Accessibility</h2><p>The site is fully keyboard navigable and tested with the <a href="http://www.chromevox.com/">ChromeVox</a> screen reader.</p>
-<h2><a href="#guidelines-when-coding" id="guidelines-when-coding" class="heading-permalink" aria-hidden="true"></a>Guidelines when coding</h2><ul>
-<li>In HTML:<ul>
-<li>Add proper aria attributes. Test with <a href="http://www.chromevox.com/">ChromeVox</a> to make sure it reads the page properly</li>
-<li>Use <code>-1</code> or <code>0</code> with <code>tabindex</code> attribute. Don&#39;t use numbers <code>&gt; 0</code> because a number above zero will take the element focus out of the document flow.</li>
-</ul>
-</li>
-<li>In CSS:<ul>
-<li>Use <code>:focus</code> alongside of a <code>:hover</code></li>
-<li>Don&#39;t remove <code>outline</code> on <code>:focus</code> elements unless you replace it with another visual focus queue.</li>
-</ul>
-</li>
-<li>In JavaScript:<ul>
-<li>Bind keyboard (<code>space</code> and <code>enter</code>) events alongside <code>click</code> events</li>
-</ul>
-</li>
-<li>Use skip links for embedded feed-type widgets(like the Twitter feed). This allows keyboard users can skip over a potentially long list of focusable items</li>
-</ul>
-<h2><a href="#javascript" id="javascript" class="heading-permalink" aria-hidden="true"></a>JavaScript</h2><ul>
-<li>Use camelCased variable names</li>
-<li>Use <code>.js-</code> prefixed selectors for binding with only javascript when it makes sense<ul>
-<li>It is ok to bind without a <code>.js-</code> prefixed class name</li>
-</ul>
-</li>
-<li>Make sure your code runs in IE7+</li>
-<li>Provide nice or&#39;ed <code>||</code> fallbacks when something might return undefined: <code>(myObject.someString || &#39;&#39;).split(...);</code></li>
-<li>jQuery is your friend. Use it when it makes sense.<ul>
-<li>Use jQuery <code>$(selector)</code> instead of vannilla JS <code>document.querySelectorAll(selector)</code></li>
-<li><code>$.extend({}, defaults, options)</code> is great for having overridable defaults</li>
-</ul>
-</li>
-<li>Bind keyboard (<code>space</code> and <code>enter</code>) events alongside <code>click</code> events<ul>
-<li><pre><code> $(selector).on(&#39;click keydown&#39;, function(e) {
-     // If click or spacebar, or enter is pressed
-     if(e.type === &#39;click&#39; || (e.type === &#39;keydown&#39; &amp;&amp; (e.keyCode === 32 || e.keyCode === 13))) {
-         // Do stuff here
-     }
-});
-</code></pre></li>
-</ul>
-</li>
-<li>Use the <code>Universal module definition</code> (UMD) when defining modules/components</li>
-</ul>
-<h3><a href="#synax-example" id="synax-example" class="heading-permalink" aria-hidden="true"></a>Synax example</h3><pre><code>function findMostRedColor(colors) {
-    colors = (colors || []);
-
-    var currentMostRedColor = null;
-    for(var i = 0; i &lt; colors.length; i++) {
-        var color = colors[i];
-
-        if(!currentMostRedColor || color.r &gt; currentMostRedColor.r) {
-            currentMostRedColor = color;
-        }
-    }
-
-    return currentMostRedColor;
-}
-</code></pre><h2><a href="#css-sass" id="css-sass" class="heading-permalink" aria-hidden="true"></a>CSS/Sass</h2><ul>
-<li>Use semantic, single class names in markup for a module/component. This makes it easier to apply a certain style to any section of the page(if necessary), <em>see <a href="http://www.kapowaz.net/articles/cargo-cult-css">Cargo Cult CSS</a></em>. </li>
-<li>Use site wide variables(check <code>./src/scss/global/_variables.scss</code>), where necessary. This allows for easy modification of colors, spacing, etc.<ul>
-<li>Lowercase, Hyphen-delimited names for Sass variables. This way the variables fit in with standard CSS keywords and property names.</li>
-</ul>
-</li>
-<li>Avoid nesting and try to use the direct descendent operator, <code>a &gt; b</code>, if you need style a nested element. This helps keep specificity down and the styles to only that module (Be mindful of possible sub-modules).<ul>
-<li>Be sure to take advantage of the <code>&amp;</code> &quot;at&quot; operator when nesting and referencing itself</li>
-</ul>
-</li>
-<li>Define a <code>:focus</code> alongside a <code>:hover</code>. This allows keyboard users to see where they are at in the document.</li>
-<li>Unit-less line-height is preferred. A unit-less line-height does not inherit a percentage value of its parent element, but instead is based on a multiplier of the font-size.<sub>— source <a href="https://github.com/styleguide/css">GitHub CSS Styleguide</a></sub></li>
-<li>Don&#39;t use ID&#39;s. If you <em>must</em> style with ID&#39;s(<em><a href="http://www.webdirections.org/blog/in-defense-of-the-humble-id-attribute/">there are some use cases, maybe</a></em>), then please use the attribute selector <code>[id=&quot;main&quot;]</code>.<ul>
-<li>Use <code>aria-</code> prefixed ID&#39;s with <code>aria</code> attributes</li>
-<li>Use  <code>form-</code> prefixed ID&#39;s for attaching labels to form fields</li>
-</ul>
-</li>
-<li>Use lower case letters in hex color values. <code>#6af89b</code></li>
-<li>Use a leading <code>0</code> zero on decimal values. <code>opacity</code>, <code>rgba</code>, etc</li>
-<li>Always provide fallbacks for property values that contain <code>rgba</code> for IE7-8</li>
-<li>Do not use property/value hacks to target specific browsers. Instead use the appropriate mixin: <code>@include ie7 { ... }</code> or <code>@include ie8 { ... }</code><ul>
-<li>Styles put inside of the <code>ie7</code>, <code>ie8</code> mixins are loaded with conditional comments.</li>
-</ul>
-</li>
-<li>Use the appropriate mixin instead of vendor prefixes. Check <code>./src/scss/global/_utility-mixins.scss</code></li>
-<li>Put states like <code>:hover</code> or <code>:focus</code> before pseudo element or nested declarations</li>
-</ul>
-<h3><a href="#css-formatting" id="css-formatting" class="heading-permalink" aria-hidden="true"></a>CSS Formatting</h3><ul>
-<li>Use tabs</li>
-<li>Use an expanded form where brackets and declarations are on their own lines</li>
-<li>Single space after property colon: <code>color: #ffffff;</code></li>
-<li>Include <code>/*commented*/</code> out qualified selectors if a class is most semantically correct with a certain element. ex. <code>/*h1*/.primary-heading { ... }</code></li>
-<li>Extra line of whitespace after <em>last</em> nested rule or mixin</li>
-<li>Use single quotes around url paths, <code>content</code> properties, etc</li>
-</ul>
-<h3><a href="#other" id="other" class="heading-permalink" aria-hidden="true"></a>Other</h3><ul>
-<li>Document styles with KSS to keep the styleguide up to date (<em>this styleguide was generated with KSS</em>)</li>
-<li>Use <code>.js-</code> prefixed selectors for binding with only javascript</li>
-<li>Use <code>.is-</code> prefixed selectors for stateful changes like active nav item or collapsed list.</li>
-</ul>
-<h3><a href="#css-property-order" id="css-property-order" class="heading-permalink" aria-hidden="true"></a>CSS Property Order</h3><p>The grouping of declarations is more important than the order of declarations within a group.</p>
-<pre><code>.selector
-{
-    position: relative;
-    top: 0;
-    float: left;
-
-    overflow: hidden;
-
-    display: block;
-    width: 100px;
-    height: 100px;
-
-    margin: 0;
-    padding: 0;
-
-    background: #00aacc;
-    border: 1px #ddff00 solid;
-
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 16px;
-    font-weight: bold;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-transform: uppercase;
-
-    cursor: move;
-
-    @include border-radius(4px);
-    @include box-shadow(1px 1px 0 #232323);
-    @include transition(all 0.3s ease);
-
-    &amp;:hover
-    {
-        color: #cccccc;
-    }
-
-    @include pseudo(&#39;before&#39;)
-    {
-        content: &#39;&#39;;
-
-        width: 10px;
-        height: 10px;
-
-        background: #ff0000;
-    }
-
-}
-</code></pre>
 	</div>
 
 
