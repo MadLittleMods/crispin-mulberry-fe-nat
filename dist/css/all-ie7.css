@@ -142,7 +142,7 @@ img {
 
 body {
 	/* @meta {"spritesheet": {"include": false}} */
-	background: #397ad1 url('../images/background.png');
+	background: #397ad1 url('../images/background.jpg');
 	background-repeat: no-repeat;
 	background-position: 59% top;
 	font-family: Arial, Helvetica, sans-serif;

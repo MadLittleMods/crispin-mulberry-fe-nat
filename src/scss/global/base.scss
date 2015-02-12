@@ -9,7 +9,7 @@ body
 {
 	// Background color picked to match the sky of the background-image so the load isn't as jarring
 	/* @meta {"spritesheet": {"include": false}} */
-	background: $site-background-color url('../images/background.png');
+	background: $site-background-color url('../images/background.jpg');
 	background-repeat: no-repeat;
 	// The percenatage is not pixel-perfect to PSD but is really close
 	// Unfortunately this will increase our browser disparity because of the pixel comparison
