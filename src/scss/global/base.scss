@@ -11,8 +11,10 @@ body
 	/* @meta {"spritesheet": {"include": false}} */
 	background: $site-background-color url('../images/background.png');
 	background-repeat: no-repeat;
-	//background-position: 59% top;
-	background-position: -543px top;
+	// The percenatage is not pixel-perfect to PSD but is really close
+	// Unfortunately this will increase our browser disparity because of the pixel comparison
+	background-position: 59% top;
+	//background-position: -543px top;
 	//@include background-size(cover);
 	
 
